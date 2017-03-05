@@ -37,9 +37,9 @@ Route::group(['middleware' => 'auth'], function () {
 	//Barang
         Route::group(['prefix'=>'barang'], function(){
             Route::get('/',['as'=>'admin.barang.index', 'uses'=>'Admin\BarangController@index']);
-            Route::get('/create',['as'=>'admin.artikel.create', 'uses'=>'Admin\ArtikelController@create']);
-            Route::post('/create',['as'=>'admin.artikel.post.create', 'uses'=>'Admin\ArtikelController@postCreate']);
-            Route::get('/{slug}/delete',['as'=>'admin.artikel.delete', 'uses'=>'Admin\ArtikelController@delete']);
+            Route::get('/tambah',['as'=>'admin.barang.tambah', 'uses'=>'Admin\BarangController@tambah']);
+            Route::post('/tambah',['as'=>'admin.barang.post.tambah', 'uses'=>'Admin\BarangController@postTambah']);
+            Route::get('/{id}/hapus',['as'=>'admin.barang.hapus', 'uses'=>'Admin\BarangController@hapus']);
            	Route::get('/{slug}/edit',['as'=>'admin.artikel.edit', 'uses'=>'Admin\ArtikelController@edit']);
            	Route::post('/{slug}/edit',['as'=>'admin.artikel.post.edit', 'uses'=>'Admin\ArtikelController@postEdit']);
             Route::get('/{slug}/status/{publish}',['as'=>'admin.artikel.publish', 'uses'=>'Admin\ArtikelController@publish']);
