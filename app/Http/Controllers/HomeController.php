@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
  * Class HomeController
  * @package App\Http\Controllers
  */
-class KasirController extends Controller
+class HomeController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -33,6 +33,10 @@ class KasirController extends Controller
      */
     public function index()
     {
-        return view('adminlte::home');
+      $data = [
+           'page' => 'dashboard',
+            ];
+        return view('adminlte::home',$data);
+
     }
 }

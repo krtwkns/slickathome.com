@@ -18,32 +18,48 @@
             </div>
         @endif
 
-        <!-- search form (Optional) -->
-<!--         <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="{{ trans('adminlte_lang::message.search') }}..."/>
-              <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-            </div>
-        </form> -->
-        <!-- /.search form -->
-
         <!-- Sidebar Menu -->
-        <ul class="sidebar-menu">
-            <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
-            <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="#"><span>Kasir</span></a></li>
-            <li class="treeview">
-                <a href="#"><span>Barang</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="#">Input Barang</a></li>
-                    <li><a href="#">Pencarian Barang</a></li>
-                </ul>
+        <ul class="sidebar-menu">            
+            <li
+            @if($page == 'dashboard')
+            {!! 'class="active"'!!}
+            @endif
+            >
+                <a href="{{ url('home') }}"><i class='fa fa-home'></i> <span>Dashboard</span></a>
             </li>
-            <li><a href="#"><span>Transaksi</span></a></li>            
-            <li><a href="#"><span>User History</span></a></li>
-        </ul><!-- /.sidebar-menu -->
+            
+            <li
+            @if($page == 'kasir')
+            {!! 'class="active"'!!}
+            @endif
+            >
+                <a href="{{ url('kasir') }}"><i class='fa fa-money'></i> <span>Kasir</span></a>
+            </li>
+
+            <li
+            @if($page == 'barang')
+            {!! 'class="active"'!!}
+            @endif
+            >
+                <a href="{{ url('barang') }}"><i class='fa fa-archive'></i> <span>Barang</span></a>
+            </li>
+
+            <li
+            @if($page == 'transaksi')
+            {!! 'class="active"'!!}
+            @endif
+            >
+                <a href="#"><i class="fa fa-calculator" aria-hidden="true"></i>Transaksi</a>
+            </li>
+
+            <li
+            @if($page == 'user_history')
+            {!! 'class="active"'!!}
+            @endif
+            >
+                <a href="#"><i class="fa fa-users" aria-hidden="true"></i>User History</a>
+            </li>            
+        </ul><!-- /.sidebar-menu
     </section>
     <!-- /.sidebar -->
 </aside>
