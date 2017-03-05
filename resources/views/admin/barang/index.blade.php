@@ -28,8 +28,8 @@ Barang
   @endforeach
 </div>
 <div style="margin-bottom: 10px">
-  <a href="" type="button" class="btn btn-info btn-md" >
-    <i class="fa fa-plus-square"></i> Tambah Barang</a>
+  <a href="{{url('barang/tambah')}}" type="button" class="btn btn-info btn-md" >
+    <i class="fa fa-plus-uare"></i> Tambah Barang</a>
 </div>
 <div style="overflow: auto">
 <table id="myTable" class="table table-striped table-bordered" cellspacing="0">
@@ -51,7 +51,8 @@ Barang
       <td>{{$b->nama_barang}}</td>
       <td>{{$b->kategori}}</td>
       <td>{{$b->ukuran}}</td>
-      <td>asd</td>
+      <td><a onclick="return confirm('Anda yakin untuk menghapus barang ini?');" href="{{url('barang/'.$b->id.'/hapus/')}}" class="btn btn-danger btn-xs">
+        <i class="fa fa-trash-o"></i> Hapus</a></td>
     </tr>
      <?php $number++ ?>
      @empty

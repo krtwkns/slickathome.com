@@ -29,54 +29,27 @@ class BarangController extends Controller
         // dd($data['barang']);
     }
 
-    public function create()
+    public function tambah()
     {
         $data = [
-            'page' => 'artikel',
-            'artikel' => Artikel::all()
+            'page' => 'barang',
+            'barang' => Barang::all()
         ];
-    	return view('admin.artikel.create',$data);
+    	return view('admin.barang.tambah',$data);
     }
 
-    public function postCreate(Request $request)
+    public function postTambah(Request $request)
     {
-        $reqArtikel = $request->except('tag');
-        $artikel = Artikel::create($reqArtikel);
-        $artikel->slug = str_slug($artikel->judul,'-');
-        $artikel->gambar = time() .'.'.$request->file('gambar')->getClientOriginalExtension();
-        // Add image from Summernote
-        $konten = $request->konten; // Summernote input field
-        $artikel->save();
-        foreach (explode(',', $request->input('tags')) as $tag) {
-            if (Tag::where('tag',$tag)->count() > 0) {
-                $checkTag = Tag::where('tag',$tag)->first();
-                $checkTag->increment('count');
-            }
-            else
-            {
-            $checkTag = Tag::create([
-                'tag'     => $tag,
-                'count'   => '1'
-                ]);
-            }
-            ArtikelTag::create([
-            'artikel_id'    => $artikel->id,
-            'tag_id'        => $checkTag->id  
-                ]);
-        }
-        // Put picture to storage
-        $gambar = $request->file('gambar')->move("images/artikel/",$artikel->gambar);
-        Image::make( $gambar->getRealPath() )->fit(600, 600)->save('images/artikel/thumbnail/'.$artikel->gambar)->destroy();
-        Session::put('alert-success', 'Artikel "'.$artikel->judul.'" berhasil ditambahkan');
-        return Redirect::to('article');
+        Barang::create($request->input());
+        Session::put('alert-success', 'Barang "'.$request->input('nama_barang').'" berhasil ditambahkan');
+        return Redirect::to('barang');
     }
 
-    public function delete($slug)
+    public function hapus($id)
     {
-    	$artikel = Artikel::where('slug',$slug)->first();
-        File::delete('/images/artikel/'.$artikel->gambar);
-        $artikel->delete();
-    	Session::put('alert-success', 'Artikel "'.$artikel->judul.'" berhasil dihapus');
+        $barang = Barang::find($id);
+        $barang->delete();
+    	Session::put('alert-success', 'Barang '.$barang->nama_barang.' berhasil dihapus');
       	return Redirect::back();	  
     }
 
