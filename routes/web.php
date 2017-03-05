@@ -22,4 +22,15 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     #adminlte_routes
+    // Manajemen Artikel
+        Route::group(['prefix'=>'barang'], function(){
+            Route::get('/',['as'=>'admin.barang.index', 'uses'=>'Admin\BarangController@index']);
+            Route::get('/create',['as'=>'admin.artikel.create', 'uses'=>'Admin\ArtikelController@create']);
+            Route::post('/create',['as'=>'admin.artikel.post.create', 'uses'=>'Admin\ArtikelController@postCreate']);
+            Route::get('/{slug}/delete',['as'=>'admin.artikel.delete', 'uses'=>'Admin\ArtikelController@delete']);
+           	Route::get('/{slug}/edit',['as'=>'admin.artikel.edit', 'uses'=>'Admin\ArtikelController@edit']);
+           	Route::post('/{slug}/edit',['as'=>'admin.artikel.post.edit', 'uses'=>'Admin\ArtikelController@postEdit']);
+            Route::get('/{slug}/status/{publish}',['as'=>'admin.artikel.publish', 'uses'=>'Admin\ArtikelController@publish']);
+
+        });
 });

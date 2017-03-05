@@ -33,6 +33,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('adminlte::home');
+      $data = [
+           'page' => 'dashboard',
+            ];
+        return view('adminlte::home',$data);
+
     }
 }
