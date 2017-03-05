@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::group(['middleware' => 'auth'], function () {
     //    Route::get('/link1', function ()    {
 //        // Uses Auth Middleware
@@ -22,4 +23,16 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     #adminlte_routes
+
+	//Kasir
+	    Route::group(['prefix'=>'kasir'], function(){
+            Route::get('/',['as'=>'admin.artikel.index', 'uses'=>'KasirController@index']);
+        });
+
+	//Barang
+	
+	//Transaksi
+	
+	//User History
+	   
 });
