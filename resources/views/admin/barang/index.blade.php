@@ -14,6 +14,9 @@ Barang
 @endsection
 
 @section('main-content')
+<<<<<<< HEAD
+  @include('admin.barang.content')
+=======
 <br>
 <!-- include summernote css/js-->
 <div class="flash-message" style="margin-left: -16px;margin-right: -16px; margin-top: 13px;">
@@ -66,6 +69,7 @@ Barang
 
 
 
+>>>>>>> e48a471eb15b17a5274a43deb62d50742a975bb4
 @endsection
 @section('code-footer')
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
