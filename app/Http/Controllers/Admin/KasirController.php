@@ -27,6 +27,11 @@ class KasirController extends Controller
         return view('admin.kasir.index',$data);
     }
 
+    public function autocomplete(Request $request)
+    {
+        
+    }
+
     public function insert ()
     {
 

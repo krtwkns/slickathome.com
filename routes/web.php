@@ -24,6 +24,8 @@ Route::group(['middleware' => 'auth'], function () {
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     #adminlte_routes
 
+    Route::get('/', ['as'=>'admin.']);
+
 	//Kasir
 	    Route::group(['prefix'=>'kasir'], function(){
             Route::get('/',['as'=>'admin.kasir.index', 'uses'=>'Admin\KasirController@index']);
@@ -33,6 +35,9 @@ Route::group(['middleware' => 'auth'], function () {
     //Transaksi
     
     //User History
+        Route::group(['prefix'=>'user-history'], function(){
+            Route::get('/', ['as'=>'admin.user-history.index', 'uses'=>'Admin\UserHistoryController@index']);
+        });        
            
 	//Barang
         Route::group(['prefix'=>'barang'], function(){

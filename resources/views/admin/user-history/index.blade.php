@@ -6,16 +6,16 @@
 @endsection
 
 @section('htmlheader_title')
-Barang 
+User History 
 @endsection
 
 @section('contentheader_title')
-Barang
+User History
 @endsection
 
 @section('main-content')
 
-  @include('admin.barang.content')
+  @include('admin.user-history.content')
   
 @endsection
 @section('code-footer')
