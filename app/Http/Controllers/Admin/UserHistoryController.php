@@ -8,24 +8,27 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\UserHistory;
-use App\User;
+use App\Users;
 use Session;
 use Input;
 use DB;
 use Validator;
 use Response;
+use Carbon\Carbon;
 
 class UserHistoryController extends Controller
 {
 
     public function index()
-    {           
+    {                   
         $data = [
             'page' => 'user-history',
-            'users_history' => UserHistory::all()
+            'users_history' => UserHistory::all(),
+            'users' => Users::all()
         ];
-        // return view('admin.barang.index',$data);
-        dd($data);
+        return view('admin.user-history.index',$data);
+        // dd($data['users_history']->username['name']);
+        // dd($data['users']);
     }
 
     public function postHistory(Request $request)
@@ -34,6 +37,6 @@ class UserHistoryController extends Controller
         // Session::put('alert-success', 'Barang "'.$request->input('nama_barang').'" berhasil ditambahkan');
         return Redirect::to('/');
     }
-
+    
 
 }

@@ -6,10 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserHistory extends Model
 {
-   protected $table = 'users_history';    
-   protected $primaryKey = 'id_history';    
-   protected $fillable = [
+   	protected $table = 'users_history';    
+   	protected $primaryKey = 'id_history';    
+   	protected $fillable = [
         'timestamp_history',
-        'user_id'
-   ];
+        'users_id'
+   	];
+
+  	public function username()
+  	{
+    	return $this->belongsTo('App\Users','users_id');
+  	}
+
 }

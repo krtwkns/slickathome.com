@@ -11,36 +11,34 @@
     @endif
   @endforeach
 </div>
-<div style="margin-bottom: 10px">
-  <a href="" type="button" class="btn btn-info btn-md" >
-    <i class="fa fa-plus-square"></i> Tambah Barang</a>
-</div>
 <div style="overflow: auto">
 <table id="myTable" class="table table-striped table-bordered" cellspacing="0">
 	<thead>
 		<tr>
       <th>No.</th>
-      <th style="text-align:center">Kode Barang</th>
-      <th >Nama Barang</th>
-      <th>Kategori</th>
-      <th>Ukuran</th>
-      <th style="text-align:center">Action</th>
-		</tr>	</thead>
+      <th>Nama User</th>
+      <th>Waktu Login</th>
+		</tr>	
+  </thead>
   <tbody>
-   <?php $number = 1 ?>
-   @forelse($barang as $b) 
+    @php
+      $number = 0 ;
+    @endphp
+
+    @forelse($users_history as $user_history) 
+
+    @php
+      $number ++ ;
+    @endphp
     <tr>
       <td>{{$number}}</td>
-      <td>{{$b->kode_barang}}</td>
-      <td>{{$b->nama_barang}}</td>
-      <td>{{$b->kategori}}</td>
-      <td>{{$b->ukuran}}</td>
-      <td>asd</td>
+      <td>{{$user_history->username['name']}}</td>
+      <td>{{$user_history->timestamp_history}}</td>
     </tr>
      <?php $number++ ?>
      @empty
         <tr>
-          <td colspan="5"><center>Belum ada artikel</center></td>
+          <td colspan="5"><center>Belum user history</center></td>
         </tr>
     @endforelse
   </tbody>
