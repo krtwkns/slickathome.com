@@ -38,7 +38,7 @@
      <?php $number++ ?>
      @empty
         <tr>
-          <td colspan="5"><center>Belum user history</center></td>
+          <td colspan="5"><center>Belum ada user history</center></td>
         </tr>
     @endforelse
   </tbody>

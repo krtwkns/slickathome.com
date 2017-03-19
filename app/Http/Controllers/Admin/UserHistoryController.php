@@ -31,12 +31,5 @@ class UserHistoryController extends Controller
         // dd($data['users']);
     }
 
-    public function postHistory(Request $request)
-    {
-       Barang::create($request->input());
-        // Session::put('alert-success', 'Barang "'.$request->input('nama_barang').'" berhasil ditambahkan');
-        return Redirect::to('/');
-    }
-    
 
 }
