@@ -26,7 +26,6 @@ class BarangController extends Controller
             'barang' => Barang::all()
         ];
         return view('admin.barang.index',$data);
-        // dd($data['barang']);
     }
 
     public function tambah()
@@ -53,110 +52,27 @@ class BarangController extends Controller
       	return Redirect::back();	  
     }
 
-    public function edit($slug)
+   public function edit($kode_barang)
     {
-        $artikel    = Artikel::where('slug',$slug)->first();
-        $artikelTag = ArtikelTag::where('artikel_id',$artikel->id)->get();
-        $tags = [];
-        foreach ($artikelTag as $at) {
-            $tags[] = $at->nameTag['tag'];
-        }
-        $valTag = implode(',', $tags);
         $data = [
-            'page' => 'artikel',
-            'artikel' => $artikel,
-            'tags'    => $valTag
+            'page' => 'barang',
+            'barang' => Barang::where('kode_barang',$kode_barang)->first()
         ];
-        return view('admin.artikel.edit',$data);
+        return view('admin.barang.edit',$data);
     }
 
     public function postEdit(Request $request)
     {
-        $artikel = $request->input();
-        $tags = explode(',', $request->input('tags'));
-        $art = Artikel::where('id',$artikel['artikel_id'])->first();
-        if ($request->file('gambar')) {
-            $gambar = time() .'.'.$request->file('gambar')->getClientOriginalExtension();
-            File::delete('images/artikel/'.$art->gambar);
-            File::delete('images/artikel/thumbnail/'.$art->gambar);
-            $upload = $request->file('gambar')->move("images/artikel/",$gambar);
-            Image::make( $upload->getRealPath() )->fit(600, 600)->save('images/artikel/thumbnail/'.$gambar)->destroy();
-            $slug = str_slug($artikel['judul'],'-');
-            Artikel::where('id',$artikel['artikel_id'])
-                ->update([ 'judul'   => $artikel['judul'],
-                            'konten' => $artikel['konten'],
-                            'slug'   => $slug,
-                            'gambar' => $gambar
-                    ]);
-        }
-    
-        else{
-            $slug = str_slug($artikel['judul'],'-');
-            Artikel::where('id',$artikel['artikel_id'])
-                ->update([ 'judul'   => $artikel['judul'],
-                            'konten' => $artikel['konten'],
-                            'slug'   => $slug
-                    ]);
-        }
+        $barang = Barang::find($request->input('id'));
+        $barang->kode_barang = $request->input('kode_barang');
+        $barang->nama_barang = $request->input('nama_barang');
+        $barang->kategori    = $request->input('kategori');
+        $barang->ukuran      = $request->input('ukuran');
+        $barang->save();
 
-        // Tag
-        $artikelTag = ArtikelTag::where('artikel_id',$request->input('artikel_id'))->get();
-        $tags = explode(',', $request->input('tags'));
-        foreach ($artikelTag as $at) {
-            if (!str_contains($request->input('tags'),$at->nameTag['tag'])) 
-            {
-                ArtikelTag::where([['tag_id','=',$at->tag_id],['artikel_id','=',$request->input('artikel_id')]])->delete();
-            }
-            Tag::where('tag',$at->nameTag['tag'])->decrement('count'); 
-        }
+        Session::put('alert-success', 'Barang "'.$request->input('nama_barang').'" berhasil diedit');
+        return Redirect::to('barang');
 
-        foreach (explode(',', $request->input('tags')) as $tag) {
-            if (Tag::where('tag',$tag)->count() > 0) {
-                $checkTag = Tag::where('tag',$tag)->first();
-                $checkTag->increment('count');
-            }
-            else
-            {
-            $checkTag = Tag::create([
-                'tag'     => $tag,
-                'count'   => '1'
-                ]);
-            ArtikelTag::create([
-            'artikel_id'    => $request->input('artikel_id'),
-            'tag_id'        => $checkTag->id  
-                ]);
-            }
-        }
-
-        Session::put('alert-success', 'Artikel berhasil diedit');
-        return Redirect::to('article');
-    }
-
-    public function publish($slug,$publish)
-    {
-        if ($publish == "0") {
-            Artikel::where('slug',$slug)->update([
-                'published' => '1'
-                ]);
-            Session::put('alert-success', 'Artikel berhasil di publish');
-        }
-        else{
-            Artikel::where('slug',$slug)->update([
-                'published' => '0'
-                ]);
-            Session::put('alert-success', 'Artikel berhasil di unpublish');
-        }
-
-        return Redirect::to('article');
-    }
-
-    public function ajaximage(Request $request)
-    {
-        $file = \Request::file('file');
-        $destinationPath = public_path().'/img/uploads/';
-        $filename = time() .'.'. $file->getClientOriginalExtension();
-        $file->move($destinationPath, $filename);
-        return url('').'/img/uploads/'.$filename;
     }
 
 }

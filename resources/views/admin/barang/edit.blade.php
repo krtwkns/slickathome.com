@@ -1,11 +1,11 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-Tambah Barang
+Edit Barang
 @endsection
 
 @section('contentheader_title')
-Tambah Barang
+Edit Barang
 @endsection
 
 @section('code-header')
@@ -46,19 +46,20 @@ Tambah Barang
 			</div>
 			@endif
 			<br>
-			<form id="tambahBarang" method="post" action="{{url('barang/tambah')}}" enctype="multipart/form-data"  class="form-horizontal">
+			<form id="editBarang" method="post" action="{{url('barang/'.$barang->kode_barang.'/edit')}}" enctype="multipart/form-data"  class="form-horizontal">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<input type="hidden" name="id" value="{{ $barang->id }}">
 				<div class="form-group">
 					<label for="kode_barang" class="col-sm-2 control-label">Kode Barang</label>
 					<div class="col-md-8">
-						<input type="text" class="form-control input-lg" id="kode_barang" name="kode_barang" placeholder="Masukkan Kode Barang" required>
+						<input type="text" class="form-control input-lg" id="kode_barang" value="{{$barang->kode_barang}}" name="kode_barang" placeholder="Masukkan Kode Barang" required>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label for="nama_barang" class="col-sm-2 control-label">Nama Barang</label>
 					<div class="col-md-8">
-						<input type="text" class="form-control input-lg" id="nama_barang" name="nama_barang" placeholder="Masukkan Nama Barang" required>
+						<input type="text" class="form-control input-lg" id="nama_barang" value="{{$barang->nama_barang}}" name="nama_barang" placeholder="Masukkan Nama Barang" required>
 					</div>
 				</div>
 
@@ -66,11 +67,10 @@ Tambah Barang
 	              <label for="group" class="col-sm-2 form-control-label "> Kategori</label>
 	              <div class="col-md-10">
 	               <select name="kategori" required>
-	               	<option value="">-- Pilih Kategori Pomade --</option>
-	                <option value="Light">Light</option>
-	                <option value="Medium">Medium</option>
-	                <option value="Strong">Strong</option>
-	                <option value="Heavy">Heavy</option>
+	                <option {!! ($barang->kategori == 'Light')? 'selected' : '' !!} value="Light">Light</option>
+	                <option {!! ($barang->kategori == 'Medium')? 'selected' : '' !!} value="Medium">Medium</option>
+	                <option {!! ($barang->kategori == 'Strong')? 'selected' : '' !!} value="Strong">Strong</option>
+	                <option {!! ($barang->kategori == 'Heavy')? 'selected' : '' !!} value="Heavy">Heavy</option>
 	              </select>
 	              </div>
 	            </div>
@@ -78,7 +78,7 @@ Tambah Barang
 				<div class="form-group">
 					<label for="ukuran" class="col-sm-2 control-label">Ukuran</label>
 					<div class="col-md-8">
-						<input type="text" class="form-control input-lg" id="ukuran" name="ukuran" placeholder="Masukkan Ukuran" required>
+						<input type="text" class="form-control input-lg" id="ukuran" name="ukuran" value="{{$barang->ukuran}}" placeholder="Masukkan Ukuran" required>
 					</div>
 				</div>
 
