@@ -1,7 +1,7 @@
 <br>
 	<div class="col-md-8">
 		<form id="cariBarang" method="post" action="{{url('article/create')}}" enctype="multipart/form-data"  class="form-horizontal">
-			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+			
 			<label for="autocomplete" class="control-label">Nama Barang atau Kode Barang</label>
 			<div class="form-group">
 				<div class="col-md-10">
@@ -17,14 +17,14 @@
 			<div class="form-group">
 				<label for="kodeBarang" class="col-sm-2 control-label">Kode Barang</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control input-lg" id="kodeBarang" name="kodeBarang" placeholder="Kode Barang" disabled>
+					<input type="text" class="form-control input-lg" id="kodeBarang" name="kodeBarang" placeholder="Kode Barang" >
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="judul" class="col-sm-2 control-label">Nama Barang</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control input-lg" id="namaBarang" name="namaBarang" placeholder="Nama Barang" disabled>
+					<input type="text" class="form-control input-lg" id="namaBarang" name="namaBarang" placeholder="Nama Barang" >
 				</div>
 			</div>
 
@@ -115,6 +115,3 @@
 		</table>
 	</div>
 	
-
-
-

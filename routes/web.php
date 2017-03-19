@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
 	    Route::group(['prefix'=>'kasir'], function(){
             Route::get('/',['as'=>'admin.kasir.index', 'uses'=>'Admin\KasirController@index']);
         });
-
+            Route::get('/autocomplete',['as'=>'autocomplete', 'uses'=>'KasirController@autocomplete']);
     
     //Transaksi
     
@@ -45,6 +45,5 @@ Route::group(['middleware' => 'auth'], function () {
            	Route::get('/{slug}/edit',['as'=>'admin.artikel.edit', 'uses'=>'Admin\ArtikelController@edit']);
            	Route::post('/{slug}/edit',['as'=>'admin.artikel.post.edit', 'uses'=>'Admin\ArtikelController@postEdit']);
             Route::get('/{slug}/status/{publish}',['as'=>'admin.artikel.publish', 'uses'=>'Admin\ArtikelController@publish']);
-
         });
 });
