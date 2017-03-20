@@ -53,11 +53,11 @@
             </li>
 
             <li
-            @if($page == 'user_history')
+            @if($page == 'user-history')
             {!! 'class="active"'!!}
             @endif
             >
-                <a href="#"><i class="fa fa-users" aria-hidden="true"></i>User History</a>
+                <a href="{{ url ('user-history')}}"><i class="fa fa-users" aria-hidden="true"></i>User History</a>
             </li>            
         </ul><!-- /.sidebar-menu
     </section>

@@ -16,7 +16,7 @@ use Response;
 
 class KasirController extends Controller
 {
-
+ 
     public function index()
     {
         $data = [
@@ -27,9 +27,19 @@ class KasirController extends Controller
         return view('admin.kasir.index',$data);
     }
 
-    public function insert ()
-    {
+    public function autocomplete(Request $request)
+    {   
+        $term = $request->term;
+        $results = array();
+        $data = Barang::where('nama_barang','LIKE','%'.$term.'%')->take(10)->get();
 
+        foreach ($data as $key => $v) {
+          $results[]=[  'value'=>$v->kode_barang." -".$v->nama_barang,
+                        'kode_barang'=>$v->kode_barang,
+                        'nama_barang'=>$v->nama_barang,
+                    ];
+        }
+        return response()->json($results);        
     }
 
 }

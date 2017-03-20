@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/',['as'=>'admin.index', 'uses'=>'HomeController@index']);
 
 Route::group(['middleware' => 'auth'], function () {
     //    Route::get('/link1', function ()    {
@@ -28,11 +25,14 @@ Route::group(['middleware' => 'auth'], function () {
 	    Route::group(['prefix'=>'kasir'], function(){
             Route::get('/',['as'=>'admin.kasir.index', 'uses'=>'Admin\KasirController@index']);
         });
-
+            Route::get('/autocomplete',['as'=>'autocomplete', 'uses'=>'Admin\KasirController@autocomplete']);
     
     //Transaksi
     
     //User History
+        Route::group(['prefix'=>'user-history'], function(){
+            Route::get('/', ['as'=>'admin.user-history.index', 'uses'=>'Admin\UserHistoryController@index']);
+        });        
            
 	//Barang
         Route::group(['prefix'=>'barang'], function(){
@@ -43,6 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
            	Route::get('/{kode_barang}/edit',['as'=>'admin.barang.edit', 'uses'=>'Admin\BarangController@edit']);
             Route::post('/{kode_barang}/edit',['as'=>'admin.barang.edit', 'uses'=>'Admin\BarangController@postEdit']);
 
-
         });
+
+        
 });

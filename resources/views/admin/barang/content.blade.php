@@ -1,4 +1,4 @@
- <br>
+<br>
 <!-- include summernote css/js-->
 <div class="flash-message" style="margin-left: -16px;margin-right: -16px; margin-top: 13px;">
   @foreach (['danger', 'warning', 'success', 'info'] as $msg)
