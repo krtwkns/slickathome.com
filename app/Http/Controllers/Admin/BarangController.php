@@ -68,6 +68,8 @@ class BarangController extends Controller
         $barang->nama_barang = $request->input('nama_barang');
         $barang->kategori    = $request->input('kategori');
         $barang->ukuran      = $request->input('ukuran');
+        $barang->harga_modal = $request->input('harga_modal');
+        $barang->harga_jual  = $request->input('harga_jual');
         $barang->save();
 
         Session::put('alert-success', 'Barang "'.$request->input('nama_barang').'" berhasil diedit');

@@ -49,7 +49,7 @@
             {!! 'class="active"'!!}
             @endif
             >
-                <a href="#"><i class="fa fa-calculator" aria-hidden="true"></i>Transaksi</a>
+                <a href="{{ url('transaksi') }}"><i class="fa fa-calculator" aria-hidden="true"></i>Transaksi</a>
             </li>
 
             <li

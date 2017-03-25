@@ -28,7 +28,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/autocomplete',['as'=>'autocomplete', 'uses'=>'Admin\KasirController@autocomplete']);
     
     //Transaksi
-    
+        Route::group(['prefix'=>'transaksi'], function(){
+                Route::get('/', ['as'=>'admin.transaksi.index', 'uses'=>'Admin\TransaksiController@index']);
+        }); 
     //User History
         Route::group(['prefix'=>'user-history'], function(){
             Route::get('/', ['as'=>'admin.user-history.index', 'uses'=>'Admin\UserHistoryController@index']);

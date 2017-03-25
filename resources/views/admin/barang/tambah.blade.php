@@ -82,7 +82,20 @@ Tambah Barang
 					</div>
 				</div>
 
-				
+				<div class="form-group">
+					<label for="ukuran" class="col-sm-2 control-label">Harga Modal</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control input-lg" id="harga_modal" name="harga_modal" placeholder="Masukkan Harga Modal" required>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="ukuran" class="col-sm-2 control-label">Harga Jual</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control input-lg" id="harga_jual" name="harga_jual" placeholder="Masukkan Harga Jual" required>
+					</div>
+				</div>
+
 				<div class="form-group text-center">
 					<div class="col-md-8 col-md-offset-2">
 					<button type="submit" class="btn btn-primary btn-lg">

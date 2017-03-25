@@ -24,17 +24,21 @@
       <th style="text-align:center">Nama Barang</th>
       <th style="text-align:center">Kategori</th>
       <th style="text-align:center">Ukuran</th>
+      <th style="text-align:center">Harga Modal</th>
+      <th style="text-align:center">Harga Jual</th>
       <th style="text-align:center">Action</th>
     </tr> </thead>
   <tbody>
    <?php $number = 1 ?>
    @forelse($barang as $b) 
     <tr>
-      <td width="5%">{{$number}}</td>
-      <td width="15%">{{$b->kode_barang}}</td>
+      <td width="5%" style="text-align:center">{{$number}}</td>
+      <td width="10%" style="text-align:center">{{$b->kode_barang}}</td>
       <td width="30%">{{$b->nama_barang}}</td>
-      <td width="20%" style="text-align:center">{{$b->kategori}}</td>
+      <td width="10%" style="text-align:center">{{$b->kategori}}</td>
       <td width="10%" style="text-align:center">{{$b->ukuran}}</td>
+      <td width="10%" style="text-align:right">{{$b->harga_modal}}</td>
+      <td width="10%" style="text-align:right">{{$b->harga_jual}}</td>
       <td style="text-align:center" ><a onclick="return confirm('Anda yakin untuk menghapus barang ini?');" href="{{url('barang/'.$b->id.'/hapus/')}}" class="btn btn-danger btn-xs">
         <i class="fa fa-trash-o"></i> Hapus</a>
         <a href="{{url('barang/'.$b->kode_barang.'/edit/')}}" class="btn btn-warning btn-xs">
