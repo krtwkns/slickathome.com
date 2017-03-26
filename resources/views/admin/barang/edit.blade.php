@@ -85,14 +85,24 @@ Edit Barang
 				<div class="form-group">
 					<label for="ukuran" class="col-sm-2 control-label">Harga Modal</label>
 					<div class="col-md-8">
-						<input type="text" class="form-control input-lg" id="harga_modal" name="harga_modal" value="{{$barang->harga_modal}}" placeholder="Masukkan Harga Modal" required>
+						<div class="input-group">
+                           <div class="input-group-addon">
+                                <b>Rp.</b>
+                            </div>
+						<input type="text" class="form-control input-lg" id="harga_modal" name="harga_modal" value="{{$barang->harga_modal}}" placeholder="Contoh : 10000" required onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);";>
+						</div>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label for="ukuran" class="col-sm-2 control-label">Harga Jual</label>
 					<div class="col-md-8">
-						<input type="text" class="form-control input-lg" id="harga_jual" name="harga_jual" value="{{$barang->harga_jual}}" placeholder="Masukkan Harga Jual" required>
+						<div class="input-group">
+                       		<div class="input-group-addon">
+                                <b>Rp.</b>
+                            </div>                   
+						<input type="text" class="form-control input-lg" id="harga_jual" name="harga_jual" value="{{$barang->harga_jual}}" placeholder="COntoh : 15000" required onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);";>
+					</div>
 					</div>
 				</div>
 

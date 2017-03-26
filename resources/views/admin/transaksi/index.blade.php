@@ -44,10 +44,10 @@ Transaksi
    @forelse($transaksi as $t) 
     <tr>
       <td width="5%" style="text-align:center">{{$number}}</td>
-      <td width="15%" style="text-align:center">{{$t->created_at}}</td>
-      <td width="18%" style="text-align:right">{{$t->laba}}</td>
+      <td width="15%" style="text-align:center">{!!App\Helpers\GeneralHelper::indonesianDateFormat($t->created_at)!!}</td>
+      <td width="18%" style="text-align:right">Rp. {{number_format($t->laba, 0, ',', '.')}}</td>
       <td width="18%" style="text-align:right">{{$t->diskon}}</td>
-      <td width="18%" style="text-align:right">{{$t->total_harga}}</td>
+      <td width="18%" style="text-align:right">Rp. {{number_format($t->total_harga, 0, ',', '.')}}</td>
       <td width="16%" style="text-align:center">{{$t->created_by}}</td>
     </tr>
      <?php $number++ ?>
