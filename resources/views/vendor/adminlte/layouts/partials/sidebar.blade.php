@@ -45,6 +45,14 @@
             </li>
 
             <li
+            @if($page == 'stok_barang')
+            {!! 'class="active"'!!}
+            @endif
+            >
+                <a href="{{ url('stok_barang') }}"><i class='fa fa-archive'></i> <span>Stok Barang</span></a>
+            </li>
+
+            <li
             @if($page == 'transaksi')
             {!! 'class="active"'!!}
             @endif

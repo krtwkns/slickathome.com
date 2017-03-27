@@ -46,6 +46,15 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/{kode_barang}/edit',['as'=>'admin.barang.edit', 'uses'=>'Admin\BarangController@postEdit']);
 
         });
+    //StokBarang
+        Route::group(['prefix'=>'stok_barang'], function(){
+            Route::get('/',['as'=>'admin.stok_barang.index', 'uses'=>'Admin\StokBarangController@index']);
+            Route::get('/tambah',['as'=>'admin.stok_barang.tambah', 'uses'=>'Admin\StokBarangController@tambah']);
+            Route::post('/tambah',['as'=>'admin.stok_barang.post.tambah', 'uses'=>'Admin\StokBarangController@postTambah']);
+            Route::get('/{id}/hapus',['as'=>'admin.stok_barang.hapus', 'uses'=>'Admin\StokBarangController@hapus']);
+            Route::get('/{id}/edit',['as'=>'admin.stok_barang.edit', 'uses'=>'Admin\StokBarangController@edit']);
+            Route::post('/{id}/edit',['as'=>'admin.stok_barang.edit', 'uses'=>'Admin\StokBarangController@postEdit']);
 
+        });
         
 });
