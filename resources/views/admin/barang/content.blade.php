@@ -37,8 +37,8 @@
       <td width="30%">{{$b->nama_barang}}</td>
       <td width="10%" style="text-align:center">{{$b->kategori}}</td>
       <td width="10%" style="text-align:center">{{$b->ukuran}}</td>
-      <td width="10%" style="text-align:right">{{$b->harga_modal}}</td>
-      <td width="10%" style="text-align:right">{{$b->harga_jual}}</td>
+      <td width="10%" style="text-align:right">Rp. {{number_format($b->harga_modal, 0, ',', '.')}}</td>
+      <td width="10%" style="text-align:right">Rp. {{number_format($b->harga_jual, 0, ',', '.')}}</td>
       <td style="text-align:center" ><a onclick="return confirm('Anda yakin untuk menghapus barang ini?');" href="{{url('barang/'.$b->id.'/hapus/')}}" class="btn btn-danger btn-xs">
         <i class="fa fa-trash-o"></i> Hapus</a>
         <a href="{{url('barang/'.$b->kode_barang.'/edit/')}}" class="btn btn-warning btn-xs">
