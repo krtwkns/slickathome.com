@@ -23,13 +23,15 @@ Route::group(['middleware' => 'auth'], function () {
 
 	//Kasir
 	    Route::group(['prefix'=>'kasir'], function(){
-            Route::get('/',['as'=>'admin.kasir.index', 'uses'=>'Admin\KasirController@index']);
+            Route::get('/{id}',['as'=>'admin.kasir.index', 'uses'=>'Admin\KasirController@index']);
+            Route::post('/add-item',['as'=>'admin.kasir.add-item', 'uses'=>'Admin\KasirController@addItem']);
         });
             Route::get('/autocomplete',['as'=>'autocomplete', 'uses'=>'Admin\KasirController@autocomplete']);
     
     //Transaksi
         Route::group(['prefix'=>'transaksi'], function(){
                 Route::get('/', ['as'=>'admin.transaksi.index', 'uses'=>'Admin\TransaksiController@index']);
+                Route::get('/add-transaksi',['as'=>'admin.transaksi.add-transaksi', 'uses'=>'Admin\TransaksiController@addTransaksi']);
         }); 
     //User History
         Route::group(['prefix'=>'user-history'], function(){

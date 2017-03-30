@@ -66,7 +66,7 @@ Tambah Stok Barang
 				<div class="form-group">
 					<label for="jumlah_stok" class="col-sm-2 control-label">Jumlah Stok</label>
 					<div class="col-md-8">
-						<input type="text" class="form-control input-lg" id="jumlah_stok" name="jumlah_stok" placeholder="Masukkan Jumlah Stok" required>
+						<input type="text" class="form-control input-lg" id="jumlah_stok" name="jumlah_stok" placeholder="Masukkan Jumlah Stok" onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);" required>
 					</div>
 				</div>
 

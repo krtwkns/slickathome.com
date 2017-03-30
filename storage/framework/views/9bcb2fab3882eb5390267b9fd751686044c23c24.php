@@ -1,6 +1,6 @@
 	<div class="col-md-8">
-		<form id="cariBarang" method="post" action="{{url('kasir/add-item')}}" enctype="multipart/form-data"  class="form-horizontal">
-			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+		<form id="cariBarang" method="post" action="<?php echo e(url('kasir/add-item')); ?>" enctype="multipart/form-data"  class="form-horizontal">
+			<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 			<label for="autocomplete" class="control-label">Nama Barang atau Kode Barang</label>
 			<div class="form-group">
 			<div class="col-md-10" style="margin-bottom: 10px;">
@@ -64,8 +64,8 @@
 	</div>
 
 	<div class="col-md-4">
-		<form id="formKasir" method="post" action="{{url('article/create')}}" enctype="multipart/form-data"  class="form-horizontal">
-			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+		<form id="formKasir" method="post" action="<?php echo e(url('article/create')); ?>" enctype="multipart/form-data"  class="form-horizontal">
+			<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 			<br>
 			<div class="form-group">
 				<label for="ukuran" class="col-sm-2 control-label">Total </label>
@@ -130,11 +130,11 @@
 			</thead>
 		  	<tbody>
 		  		<?php $number = 1 ?>
-		  		@if( ! empty($item))
-		  		@forelse($item as $d)
+		  		<?php if( ! empty($item)): ?>
+		  		<?php $__empty_1 = true; $__currentLoopData = $item; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
 			    <tr>
-			        <td width="5%" style="text-align:center">{{$number}}</td>
-			        <td width="10%" style="text-align:center">{{$d->kode_barang}}</td>
+			        <td width="5%" style="text-align:center"><?php echo e($number); ?></td>
+			        <td width="10%" style="text-align:center"><?php echo e($d->kode_barang); ?></td>
 			        <td width="30%">nama_barang</td>
 			        <td width="10%" style="text-align:right">harga_jual</td>
 			        <td width="10%" style="text-align:right">quantity here</td>
@@ -144,14 +144,14 @@
 			        </td>
 			    </tr>
 			    <?php $number++ ?>
-			     @empty
+			     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
 			        <tr>
 			          <td colspan="7"><center>Belum ada barang</center></td>
 			        </tr>
-			    @endforelse
-		  		@else
+			    <?php endif; ?>
+		  		<?php else: ?>
 		  		
-			    @endif
+			    <?php endif; ?>
 		  </tbody>
 		</table>
 	</div>
