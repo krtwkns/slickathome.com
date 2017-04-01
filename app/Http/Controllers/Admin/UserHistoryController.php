@@ -23,7 +23,7 @@ class UserHistoryController extends Controller
     {                   
         $data = [
             'page' => 'user-history',
-            'users_history' => UserHistory::all(),
+            'users_history' => UserHistory::orderBy('timestamp_history', 'DESC')->get(),
             'users' => Users::all()
         ];
         return view('admin.user-history.index',$data);

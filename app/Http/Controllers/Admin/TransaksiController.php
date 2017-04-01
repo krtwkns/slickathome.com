@@ -22,6 +22,7 @@ class TransaksiController extends Controller
 
     public function index()
     {
+        
         $data = [
             'page' => 'transaksi',
             'transaksi' => Transaksi::all()
@@ -30,12 +31,21 @@ class TransaksiController extends Controller
     }
 
     public function addTransaksi(Request $request)
-    {
+    {        
     	$transaksi = Transaksi::create([
-    			'created_by' =>  Auth::User()->name,
+    			'created_by' =>  Auth::User()->id,
+                'diskon' => 0,
+                'total_harga' => 0,
+                'laba' => 0,
     	]);
         
         return Redirect::to('/kasir/'.$transaksi->id.'');
+    }
+
+    public function delete($id)
+    {
+        $result = Transaksi::find($id)->delete();
+        return Redirect::to('/');
     }
 
     

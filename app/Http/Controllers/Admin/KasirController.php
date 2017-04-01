@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Barang;
 use App\HargaBarang;
+use App\Transaksi;
 use App\DetailTransaksi;
 use Session;
 use Input;
@@ -18,11 +19,14 @@ use Response;
 class KasirController extends Controller
 {
  
-    public function index()
+    public function index($id)
     {
+        $detailTransaksi = DetailTransaksi::where('transaksi_id', $id)->get();
+        $transaction = Transaksi::where('id', $id)->get();
         $data = [
             'page' => 'kasir',
-            'item' => []
+            'transaction' => $transaction,
+            'item' => $detailTransaksi,
         ];
         return view('admin.kasir.index',$data);
     }
@@ -43,14 +47,16 @@ class KasirController extends Controller
         return response()->json($results);        
     }
 
-    public function addItem(Request $request)
+
+    public function addItem($id, Request $request)
     {
-        $data = [
-            'page' => 'kasir',
-            'barang' => Barang::all(),
-            'item'=> $request->input()
-        ];
-        return view('admin.kasir.index', $data);
+        $in = $request->input() ;
+        $in['transaksi_id'] = $id;
+        $in['barang_id'] = 4 ;
+        $result = DetailTransaksi::create($in);
+        $result->save();
+
+        return Redirect::to('/kasir/'.$id);       
     }
 
 }

@@ -12,7 +12,7 @@
   @endforeach
 </div>
 <div style="overflow: auto">
-<table id="myTable" class="table table-striped table-bordered" cellspacing="0">
+<table id="historyTable" class="table table-striped table-bordered" cellspacing="0">
 	<thead>
 		<tr>
       <th>No.</th>

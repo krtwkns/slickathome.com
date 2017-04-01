@@ -33,7 +33,7 @@
             {!! 'class="active"'!!}
             @endif
             >
-                <a href="{{ url('kasir') }}"><i class='fa fa-money'></i> <span>Kasir</span></a>
+                <a href="{{ url('transaksi/add-transaksi') }}"><i class='fa fa-money'></i> <span>Kasir</span></a>
             </li>
 
             <li

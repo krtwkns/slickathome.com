@@ -1,30 +1,28 @@
-@extends('adminlte::layouts.app')
-
-@section('code-header')
+<?php $__env->startSection('code-header'); ?>
 
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('htmlheader_title')
+<?php $__env->startSection('htmlheader_title'); ?>
 Kasir
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('contentheader_title')
+<?php $__env->startSection('contentheader_title'); ?>
 Kasir
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('main-content')
+<?php $__env->startSection('main-content'); ?>
 	
-	@include('admin.kasir.content')
+	<?php echo $__env->make('admin.kasir.content', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 	
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('code-footer')
+<?php $__env->startSection('code-footer'); ?>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#autocomplete').autocomplete({                
-                source:'{!!URL::route('autocomplete')!!}',
-                // source:"{{ URL::to('autocomplete')}}",
+                source:'<?php echo URL::route('autocomplete'); ?>',
+                // source:"<?php echo e(URL::to('autocomplete')); ?>",
                 minlength:2,
                 autoFocus:true,                 
                 select: function (event, ui) {
@@ -51,4 +49,5 @@ Kasir
           });
         });
     </script>    
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('adminlte::layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
