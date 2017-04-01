@@ -14,6 +14,7 @@ use Input;
 use DB;
 use Validator;
 use Response;
+use Auth;
 
 
 class TransaksiController extends Controller
@@ -26,6 +27,15 @@ class TransaksiController extends Controller
             'transaksi' => Transaksi::all()
         ];
         return view('admin.transaksi.index',$data);
+    }
+
+    public function addTransaksi(Request $request)
+    {
+    	$transaksi = Transaksi::create([
+    			'created_by' =>  Auth::User()->name,
+    	]);
+        
+        return Redirect::to('/kasir/'.$transaksi->id.'');
     }
 
     

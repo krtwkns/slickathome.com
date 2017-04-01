@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Barang;
 use App\HargaBarang;
+use App\DetailTransaksi;
 use Session;
 use Input;
 use DB;
@@ -21,8 +22,7 @@ class KasirController extends Controller
     {
         $data = [
             'page' => 'kasir',
-            'barang' => Barang::all(),
-            'harga_barang' => HargaBarang::all()
+            'item' => []
         ];
         return view('admin.kasir.index',$data);
     }
@@ -37,9 +37,20 @@ class KasirController extends Controller
           $results[]=[  'value'=>$v->kode_barang." -".$v->nama_barang,
                         'kode_barang'=>$v->kode_barang,
                         'nama_barang'=>$v->nama_barang,
+                        'harga'=>$v->harga_jual,
                     ];
         }
         return response()->json($results);        
+    }
+
+    public function addItem(Request $request)
+    {
+        $data = [
+            'page' => 'kasir',
+            'barang' => Barang::all(),
+            'item'=> $request->input()
+        ];
+        return view('admin.kasir.index', $data);
     }
 
 }

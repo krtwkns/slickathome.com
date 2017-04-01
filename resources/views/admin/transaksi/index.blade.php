@@ -29,6 +29,15 @@ Transaksi
   @endforeach
 </div>
 <div style="overflow: auto">
+
+<div style="margin-bottom: 10px">
+  <a href="{{url('/transaksi/add-transaksi')}}" type="button" class="btn btn-info btn-md" >
+    <i class="fa fa-plus-square"></i> Tambah Transaksi</a>
+</div>
+
+<br>
+
+</div>
 <table id="myTable" class="table table-striped table-bordered" cellspacing="0">
   <thead>
     <tr>
