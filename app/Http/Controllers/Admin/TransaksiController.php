@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Transaksi;
+use App\DetailTransaksi;
 use Intervention\Image\ImageManagerStatic as Image;
 use Session;
 use Input;
@@ -46,6 +47,21 @@ class TransaksiController extends Controller
     {
         $result = Transaksi::find($id)->delete();
         return Redirect::to('/');
+    }
+
+    public function viewTransaksi($id)
+    {
+        $transaksi = Transaksi::where('id', $id)->get()->first();
+
+        $transaksiId = $transaksi->pluck('id')->toArray();
+        $item = DetailTransaksi::where('transaksi_id', $transaksiId)->get();
+    
+        $data = [
+            'page' => 'view-transaksi',
+            'item' => $item,
+            'transaksi' => $transaksi,
+        ];
+        return view('admin.transaksi.view', $data);
     }
 
     

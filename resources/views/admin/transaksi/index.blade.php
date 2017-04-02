@@ -47,6 +47,7 @@ Transaksi
       <th style="text-align:center">Diskon</th>
       <th style="text-align:center">Laba</th>
       <th style="text-align:center">Ditambahkan oleh</th>
+      <th style="text-align:center">Action</th>
     </tr> </thead>
   <tbody>
    <?php $number = 1 ?>
@@ -58,6 +59,11 @@ Transaksi
       <td width="18%" style="text-align:right">Rp. {{number_format($t->diskon, 0, ',', '.')}}</td>
       <td width="18%" style="text-align:right">Rp. {{number_format($t->laba, 0, ',', '.')}}</td>
       <td width="16%" style="text-align:center">{{$t->created_by}}</td>
+      <td width="16%" style="text-align:center">
+        <a href="{{url('/transaksi/'.$t->id.'/view-transaksi')}}" type="button" class="btn btn-info btn-md" >
+          <i class="fa fa-eye"></i> View Details
+        </a>
+      </td>
     </tr>
      <?php $number++ ?>
      @empty

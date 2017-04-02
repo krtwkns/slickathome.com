@@ -42,10 +42,11 @@ Transaksi
     <tr>
       <th>No.</th>
       <th style="text-align:center">Tanggal</th>
-      <th style="text-align:center">Laba</th>
-      <th style="text-align:center">Diskon</th>
       <th style="text-align:center">Total Harga</th>
-      <th style="text-align:center">Admin</th>
+      <th style="text-align:center">Diskon</th>
+      <th style="text-align:center">Laba</th>
+      <th style="text-align:center">Ditambahkan oleh</th>
+      <th style="text-align:center">Action</th>
     </tr> </thead>
   <tbody>
    <?php $number = 1 ?>
@@ -53,10 +54,15 @@ Transaksi
     <tr>
       <td width="5%" style="text-align:center"><?php echo e($number); ?></td>
       <td width="15%" style="text-align:center"><?php echo App\Helpers\GeneralHelper::indonesianDateFormat($t->created_at); ?></td>
-      <td width="18%" style="text-align:right">Rp. <?php echo e(number_format($t->laba, 0, ',', '.')); ?></td>
-      <td width="18%" style="text-align:right"><?php echo e($t->diskon); ?></td>
       <td width="18%" style="text-align:right">Rp. <?php echo e(number_format($t->total_harga, 0, ',', '.')); ?></td>
+      <td width="18%" style="text-align:right">Rp. <?php echo e(number_format($t->diskon, 0, ',', '.')); ?></td>
+      <td width="18%" style="text-align:right">Rp. <?php echo e(number_format($t->laba, 0, ',', '.')); ?></td>
       <td width="16%" style="text-align:center"><?php echo e($t->created_by); ?></td>
+      <td width="16%" style="text-align:center">
+        <a href="<?php echo e(url('/transaksi/'.$t->id.'/view-transaksi')); ?>" type="button" class="btn btn-info btn-md" >
+          <i class="fa fa-eye"></i> View Details
+        </a>
+      </td>
     </tr>
      <?php $number++ ?>
      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
@@ -66,7 +72,6 @@ Transaksi
     <?php endif; ?>
   </tbody>
 </table>
-</div>
   
 <?php $__env->stopSection(); ?>
 

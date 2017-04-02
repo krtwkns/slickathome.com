@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix'=>'transaksi'], function(){
                 Route::get('/', ['as'=>'admin.transaksi.index', 'uses'=>'Admin\TransaksiController@index']);
                 Route::get('/add-transaksi',['as'=>'admin.transaksi.add-transaksi', 'uses'=>'Admin\TransaksiController@addTransaksi']);
+                Route::get('/{id}/view-transaksi',['as'=>'admin.transaksi.view-transaksi', 'uses'=>'Admin\TransaksiController@viewTransaksi']);
         }); 
 //User History
         Route::group(['prefix'=>'user-history'], function(){
