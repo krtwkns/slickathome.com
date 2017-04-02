@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\StokBarang;
+use App\Barang;
 use Intervention\Image\ImageManagerStatic as Image;
 use Session;
 use Input;
@@ -67,11 +68,11 @@ class StokBarangController extends Controller
         $stokbarang->satuan_stok = $request->input('satuan_stok');
         $stokbarang->jumlah_stok = $request->input('jumlah_stok');
         $stokbarang->barang_id    = $request->input('barang_id');
-        $stokbarang->save();
+        $stokbarang->save();        
+        $namaBarang = Barang::where('id', $request->input('barang_id'))->first()->nama_barang;
 
-        Session::put('alert-success', 'Barang "'.$request->input('barang_id').'" berhasil diedit');
+        Session::put('alert-success', 'Barang "'.$namaBarang.'" berhasil diedit');
         return Redirect::to('stok_barang');
-
     }
 
 }

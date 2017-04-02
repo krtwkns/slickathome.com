@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Barang;
+use App\StokBarang;
 use Intervention\Image\ImageManagerStatic as Image;
 use Session;
 use Input;
@@ -38,8 +39,13 @@ class BarangController extends Controller
     }
 
     public function postTambah(Request $request)
-    {
+    {                
         Barang::create($request->input());
+        $in = $request->input();
+        $in['barang_id'] = Barang::where('kode_barang', $request->input('kode_barang'))->first()->id;
+        $in['jumlah_stok'] = 0;
+        $in['satuan_stok'] = 'pcs';
+        StokBarang::create($in);
         Session::put('alert-success', 'Barang "'.$request->input('nama_barang').'" berhasil ditambahkan');
         return Redirect::to('barang');
     }

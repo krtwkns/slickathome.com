@@ -13,4 +13,9 @@ class StokBarang extends Model
 		'jumlah_stok', 
 		'barang_id',
    ];
+
+    public function barang()
+    {
+        return $this->belongsTo('App\Barang')->withTrashed();
+    }
 }

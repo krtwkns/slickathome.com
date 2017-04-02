@@ -48,7 +48,7 @@
      <?php $number++ ?>
      @empty
         <tr>
-          <td colspan="5"><center>Belum ada barang</center></td>
+          <td colspan="8"><center>Belum ada barang</center></td>
         </tr>
     @endforelse
   </tbody>

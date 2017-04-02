@@ -47,19 +47,32 @@ Edit Stok
 			@endif
 			<br>
 			<form id="editBarang" method="post" action="{{url('stok_barang/'.$stok_barang->barang_id.'/edit')}}" enctype="multipart/form-data"  class="form-horizontal">
+				
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
-				<input type="hidden" name="id" value="{{ $stok_barang->id }}">
+				<input type="hidden" name="id" value="{{ $stok_barang->id }}">	
+				<input type="hidden" name="barang_id" value="{{ $stok_barang->barang_id }}">	
+
 				<div class="form-group">
-					<label for="barang_id" class="col-sm-2 control-label">Barang</label>
+					<label for="barang_id" class="col-sm-2 control-label">Kode Barang</label>
 					<div class="col-md-8">
-						<input type="text" class="form-control input-lg" id="barang_id" value="{{$stok_barang->barang_id}}" name="barang_id" placeholder="Masukkan Barang" required>
+						<input type="text" class="form-control input-lg" id="barang_id" value="{{$stok_barang->barang->kode_barang}}" name="kode_barang" placeholder="Masukkan Barang" required disabled>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="satuan_stok" class="col-sm-2 control-label">Satuan Stok</label>
+					<label for="barang_id" class="col-sm-2 control-label">Nama Barang</label>
 					<div class="col-md-8">
-						<input type="text" class="form-control input-lg" id="satuan_stok" value="{{$stok_barang->satuan_stok}}" name="satuan_stok" placeholder="Masukkan Satuan Stok" required>
+						<input type="text" class="form-control input-lg" id="barang_id" value="{{$stok_barang->barang->nama_barang}}" name="nama_barang" placeholder="Masukkan Barang" required disabled>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="satuan_stok" class="col-sm-2 control-label">Satuan Stok Barang</label>
+					<div class="col-md-8">
+	                    <select class="form-control" id="kategori" name="satuan_stok" required>
+	                        <option value="{{!!$stok_barang->satuan_stok!!}}" selected >{{$stok_barang->satuan_stok}}</option>
+	                        <option value="pcs" selected>pcs</option>
+	                    </select>
 					</div>
 				</div>
 
