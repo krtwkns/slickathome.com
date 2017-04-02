@@ -45,7 +45,12 @@
 			<div class="form-group">
 				<label for="judul" class="col-sm-2 control-label">Sub-Total(Rp)</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control input-lg" id="sub_jumlah_harga" name="sub_jumlah_harga" placeholder="Sub Total Harga (Rupiah)">
+					<div class="input-group">
+	                    <div class="input-group-addon">
+	                        <b>Rp.</b>
+	                    </div>
+					<input type="text" class="form-control input-lg" id="sub_jumlah_harga" name="sub_jumlah_harga"onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);"; disabled>
+				</div>
 				</div>
 			</div>				
 
@@ -86,7 +91,7 @@
 	                    <div class="input-group-addon">
 	                        <b>Rp.</b>
 	                    </div>
-					<input type="text" class="form-control input-lg" id="bayar" name="bayar" required>
+					<input type="text" class="form-control input-lg" id="bayar" name="bayar" required onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);";>
 					</div>
 				</div>
 			</div>
@@ -98,7 +103,7 @@
 	                    <div class="input-group-addon">
 	                        <b>Rp.</b>
 	                    </div>
-					<input type="text" class="form-control input-lg" id="diskon" name="diskon" required>
+					<input type="text" class="form-control input-lg" id="diskon" name="diskon" required onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);";>
 					</div>
 				</div>
 			</div>			
@@ -110,7 +115,7 @@
 	                    <div class="input-group-addon">
 	                        <b>Rp.</b>
 	                    </div>
-					<input disabled type="text" class="form-control input-lg" id="kembali" name="kembali" ;>
+					<input disabled type="text" class="form-control input-lg" id="kembali" name="kembali" onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);";>
 					</div>
 				</div>
 			</div>

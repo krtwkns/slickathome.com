@@ -48,18 +48,18 @@ View Detail Transaksi
 			<br>
 			<form id="view-detail" method="" action="" enctype="multipart/form-data"  class="form-horizontal">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
-		
-				<div class="form-group">
-					<label for="diskon" class="col-sm-2 control-label">Diskon</label>
+			
+			<div class="form-group">
+					<label for="nama_barang" class="col-sm-2 control-label">Total Harga</label>
 					<div class="col-md-8">
-						<input disabled type="text" class="form-control input-lg" id="diskon" value="{{ $transaksi->diskon }}" name="diskon" >
+						<input disabled type="text" class="form-control input-lg" id="nama_barang" value="{{ $transaksi->total_harga }}" name="nama_barang"  >
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="nama_barang" class="col-sm-2 control-label">Total Harga</label>
+					<label for="diskon" class="col-sm-2 control-label">Diskon</label>
 					<div class="col-md-8">
-						<input disabled type="text" class="form-control input-lg" id="nama_barang" value="{{ $transaksi->total_harga }}" name="nama_barang"  >
+						<input disabled type="text" class="form-control input-lg" id="diskon" value="{{ $transaksi->diskon }}" name="diskon" >
 					</div>
 				</div>
 
@@ -92,7 +92,7 @@ View Detail Transaksi
 				      <th style="text-align:center">No.</th>
 				      <th style="text-align:center">Nama Barang</th>
 				      <th style="text-align:center">Jumlah</th>
-				      <th style="text-align:center">sub-Harga</th>
+				      <th style="text-align:center">Harga</th>
 				    </tr>
 				    </thead> 
 				    <tbody>
@@ -100,7 +100,7 @@ View Detail Transaksi
 				   @forelse($item as $i) 
 				    <tr>
 				    	<td width="5%" style="text-align:center">{{$number}}</td>
-				    	<td width="25%" style="text-align:center">$i->nama_barang</td>
+				    	<td width="25%" style="text-align:center">{{$i->barang->nama_barang}}</td>
 				    	<td width="25%" style="text-align:center">{{$i->sub_jumlah_barang}}</td>
 				    	<td width="25%" style="text-align:center">Rp. {{number_format($i->sub_jumlah_harga, 0, ',', '.')}}</td>
 				    </tr>
