@@ -73,7 +73,7 @@ View Detail Transaksi
 				<div class="form-group">
 					<label for="created_at" class="col-sm-2 control-label">Waktu Transaksi</label>
 					<div class="col-md-8">
-						<input disabled type="text" class="form-control input-lg" id="created_at" name="created_at" value="{{ $transaksi->created_at }}" >
+						<input disabled type="text" class="form-control input-lg" id="created_at" name="created_at" value="{!!App\Helpers\GeneralHelper::indonesianDateFormat($transaksi->created_at)!!}" >
 					</div>
 				</div>
 
@@ -102,7 +102,7 @@ View Detail Transaksi
 				    	<td width="5%" style="text-align:center">{{$number}}</td>
 				    	<td width="25%" style="text-align:center">$i->nama_barang</td>
 				    	<td width="25%" style="text-align:center">{{$i->sub_jumlah_barang}}</td>
-				    	<td width="25%" style="text-align:center">{{$i->sub_jumlah_harga}}</td>
+				    	<td width="25%" style="text-align:center">Rp. {{number_format($i->sub_jumlah_harga, 0, ',', '.')}}</td>
 				    </tr>
 				     <?php $number++ ?>
 				    @empty

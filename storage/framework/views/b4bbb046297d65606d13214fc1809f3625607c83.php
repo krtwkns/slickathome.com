@@ -72,7 +72,7 @@ View Detail Transaksi
 				<div class="form-group">
 					<label for="created_at" class="col-sm-2 control-label">Waktu Transaksi</label>
 					<div class="col-md-8">
-						<input disabled type="text" class="form-control input-lg" id="created_at" name="created_at" value="<?php echo e($transaksi->created_at); ?>" >
+						<input disabled type="text" class="form-control input-lg" id="created_at" name="created_at" value="<?php echo App\Helpers\GeneralHelper::indonesianDateFormat($transaksi->created_at); ?>" >
 					</div>
 				</div>
 
@@ -101,7 +101,7 @@ View Detail Transaksi
 				    	<td width="5%" style="text-align:center"><?php echo e($number); ?></td>
 				    	<td width="25%" style="text-align:center">$i->nama_barang</td>
 				    	<td width="25%" style="text-align:center"><?php echo e($i->sub_jumlah_barang); ?></td>
-				    	<td width="25%" style="text-align:center"><?php echo e($i->sub_jumlah_harga); ?></td>
+				    	<td width="25%" style="text-align:center">Rp. <?php echo e(number_format($i->sub_jumlah_harga, 0, ',', '.')); ?></td>
 				    </tr>
 				     <?php $number++ ?>
 				    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
