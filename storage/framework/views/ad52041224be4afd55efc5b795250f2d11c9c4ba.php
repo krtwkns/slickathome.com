@@ -26,18 +26,28 @@ Kasir
                 minlength:2,
                 autoFocus:true,                 
                 select: function (event, ui) {
-                var item = ui.item;
+                var item = ui.item;                
                     if(item) {
                         $("#kode_barang").val(item.kode_barang);
                         $("#nama_barang").val(item.nama_barang);
                         $("#harga").val(item.harga);
-                        var quantity = $('#quantity').val();
-                        $("#subTotal").val(quantity);
                     }
                 }
-
             });            
         });
     </script>
+    <script type="text/javascript">
+        $("#harga,#sub_jumlah_barang").keyup(function () {
+            $('#sub_jumlah_harga').val($('#harga').val() * $('#sub_jumlah_barang').val());
+        });
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+          $('#caseerTable').DataTable({
+            destroy: true,
+            "ordering": true
+          });
+        });
+    </script>    
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('adminlte::layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

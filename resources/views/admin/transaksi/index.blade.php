@@ -62,7 +62,7 @@ Transaksi
      <?php $number++ ?>
      @empty
         <tr>
-          <td colspan="5"><center>Belum ada transaksi</center></td>
+          <td colspan="6"><center>Belum ada transaksi</center></td>
         </tr>
     @endforelse
   </tbody>

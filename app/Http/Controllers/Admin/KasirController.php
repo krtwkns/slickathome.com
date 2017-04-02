@@ -20,13 +20,31 @@ class KasirController extends Controller
 {
  
     public function index($id)
-    {
+    {   
         $detailTransaksi = DetailTransaksi::where('transaksi_id', $id)->get();
+         
+         //untuk nampilkan nama barang dan harga di tabel bawah
+            //get kode_barang from $detailTransaksi
+            $pluck = $detailTransaksi->pluck('kode_barang')->first();
+            //get barang where kode_barang = kode_barang
+            $item = Barang::where('kode_barang', $pluck)->get(); 
+            // gabungkan barang dan detailTransaksi
+
+        $totalHarga = 0;
+        $subtotal = $detailTransaksi->pluck('sub_jumlah_harga')->toArray();
+
+        for ($i=0; $i < $detailTransaksi->count(); $i++) 
+        { 
+            $totalHarga = $totalHarga + $subtotal[$i];
+        }
+
+
         $transaction = Transaksi::where('id', $id)->get();
         $data = [
             'page' => 'kasir',
             'transaction' => $transaction,
             'item' => $detailTransaksi,
+            'totalHarga' => $totalHarga,
         ];
         return view('admin.kasir.index',$data);
     }
@@ -52,11 +70,17 @@ class KasirController extends Controller
     {
         $in = $request->input() ;
         $in['transaksi_id'] = $id;
-        $in['barang_id'] = 4 ;
+        $in['barang_id'] = $request->input('kode_barang');
         $result = DetailTransaksi::create($in);
         $result->save();
 
         return Redirect::to('/kasir/'.$id);       
+    }
+
+    public function deleteItem($id)
+    {
+        $item = DetailTransaksi::find($id)->delete();
+        return Redirect::back();       
     }
 
 }

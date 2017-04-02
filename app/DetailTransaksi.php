@@ -12,7 +12,7 @@ class DetailTransaksi extends Model
    		'sub_jumlah_barang',
 		'sub_jumlah_harga',   		
 		'transaksi_id', 
-		'barang_id',
+		'kode_barang',
 		'created_at',
 		'updated_at',
    ];

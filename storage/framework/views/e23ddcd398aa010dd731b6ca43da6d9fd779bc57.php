@@ -61,7 +61,7 @@ Transaksi
      <?php $number++ ?>
      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
         <tr>
-          <td colspan="5"><center>Belum ada transaksi</center></td>
+          <td colspan="6"><center>Belum ada transaksi</center></td>
         </tr>
     <?php endif; ?>
   </tbody>

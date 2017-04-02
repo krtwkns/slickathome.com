@@ -1,22 +1,20 @@
 	<div class="col-md-8">
-		<form id="cariBarang" method="post" action="<?php echo e(url('kasir/add-item')); ?>" enctype="multipart/form-data"  class="form-horizontal">
+		<?php $__currentLoopData = $transaction; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $transaction): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+		<a class="btn btn-danger btn-md" href="<?php echo e(('hapus/'.$transaction->id)); ?>">Batalkan Transaksi</a>
+		<form id="cariBarang" method="post" action="<?php echo e(url('kasir/add-item/'.$transaction->id)); ?>" enctype="multipart/form-data"  class="form-horizontal">
+			<br>
 			<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 			<label for="autocomplete" class="control-label">Nama Barang atau Kode Barang</label>
 			<div class="form-group">
-			<div class="col-md-10" style="margin-bottom: 10px;">
+			<div class="col-md-12" style="margin-bottom: 10px;">
 					<input type="text" class="form-control input-lg" id="autocomplete" name="autocomplete" placeholder="Cari nama barang atau kode barang" required>
-				</div>
-				<div class="col-md-2">				
-					<button type="submit" class="btn btn-primary btn-lg">
-						<i class="fa fa-search" aria-hidden="true"></i>
-					</button>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="kode_barang" class="col-sm-2 control-label">Kode Barang</label>
 				<div class="col-md-10">
-					<input disabled type="text" class="form-control input-lg" id="kode_barang" name="kode_barang" placeholder="Kode Barang" >
+					<input readonly type="text" class="form-control input-lg" id="kode_barang" name="kode_barang" placeholder="Kode Barang" >
 				</div>
 			</div>
 
@@ -38,24 +36,23 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="form-group">
 				<label for="judul" class="col-sm-2 control-label">Quantity </label>
 				<div class="col-md-10">
-					<input type="text" class="form-control input-lg" id="quantity" name="quantity" placeholder="Contoh : 10000" required onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);";>
+					<input type="text" class="form-control input-lg" id="sub_jumlah_barang" name="sub_jumlah_barang" placeholder="Contoh : 10" required onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);";>
 				</div>
 			</div>				
 		
 			<div class="form-group">
 				<label for="judul" class="col-sm-2 control-label">Sub-Total(Rp)</label>
 				<div class="col-md-10">
-					<input disabled type="text" class="form-control input-lg" id="subTotal" name="subTotal" placeholder="Sub Total Harga (Rupiah)" disabled>
+					<input type="text" class="form-control input-lg" id="sub_jumlah_harga" name="sub_jumlah_harga" placeholder="Sub Total Harga (Rupiah)">
 				</div>
 			</div>				
 
 			<div class="form-group" style="text-align: right;">
 				<div class="col-md-10 col-md-offset-2">
-					<button type="submit" class="btn btn-primary btn-lg">
+					<button type="submit" class="btn btn-primary btn-md">
 						<i class="fa fa-shopping-cart" aria-hidden="true"></i> Tambah
 					</button>
 				</div>
@@ -63,6 +60,9 @@
 		</form>
 	</div>
 
+	<br>
+	<br>
+	<br>	
 	<div class="col-md-4">
 		<form id="formKasir" method="post" action="<?php echo e(url('article/create')); ?>" enctype="multipart/form-data"  class="form-horizontal">
 			<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
@@ -74,7 +74,7 @@
 	                    <div class="input-group-addon">
 	                        <b>Rp.</b>
 	                    </div>
-					<input disabled type="text" class="form-control input-lg" id="total" name="total" ;>
+					<input readonly type="text" class="form-control input-lg" id="total" name="total" value="<?php echo e($totalHarga); ?>">
 					</div>
 				</div>
 			</div>
@@ -86,10 +86,22 @@
 	                    <div class="input-group-addon">
 	                        <b>Rp.</b>
 	                    </div>
-					<input disabled type="text" class="form-control input-lg" id="bayar" name="bayar" ;>
+					<input type="text" class="form-control input-lg" id="bayar" name="bayar" required>
 					</div>
 				</div>
 			</div>
+
+			<div class="form-group">
+				<label for="ukuran" class="col-sm-2 control-label">Diskon </label>
+				<div class="col-md-10">
+					<div class="input-group">
+	                    <div class="input-group-addon">
+	                        <b>Rp.</b>
+	                    </div>
+					<input type="text" class="form-control input-lg" id="bayar" name="bayar" required>
+					</div>
+				</div>
+			</div>			
 
 			<div class="form-group">
 				<label for="ukuran" class="col-sm-2 control-label">Kembali </label>
@@ -103,9 +115,9 @@
 				</div>
 			</div>
 
-			<div class="form-group">
+			<div class="pull-right">
 				<div class="col-md-10">
-					<button type="submit" class="btn btn-success btn-lg  text-align:right">
+					<button type="submit" class="btn btn-success btn-md">
 						<i class="fa fa-shopping-cart" aria-hidden="true"> SELESAI</i>
 					</button>
 				</div>
@@ -137,10 +149,11 @@
 			        <td width="10%" style="text-align:center"><?php echo e($d->kode_barang); ?></td>
 			        <td width="30%">nama_barang</td>
 			        <td width="10%" style="text-align:right">harga_jual</td>
-			        <td width="10%" style="text-align:right">quantity here</td>
-			        <td width="10%" style="text-align:right">sub-total</td>
+			        <td width="10%" style="text-align:right"><?php echo e($d->sub_jumlah_barang); ?></td>
+			        <td width="10%" style="text-align:right"><?php echo e($d->sub_jumlah_harga); ?></td>
 			        <td style="text-align:center" >
-			          <i class="fa fa-trash-o btn btn-sml btn-danger"> Hapus</i>
+			          <a href="<?php echo e(url('kasir/delete-item/'.$d->id)); ?>" class="btn btn-danger btn-xs">
+	            		<i class="fa fa-trash"></i> Hapus</a>
 			        </td>
 			    </tr>
 			    <?php $number++ ?>
@@ -154,5 +167,6 @@
 			    <?php endif; ?>
 		  </tbody>
 		</table>
+		<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 	</div>
 	

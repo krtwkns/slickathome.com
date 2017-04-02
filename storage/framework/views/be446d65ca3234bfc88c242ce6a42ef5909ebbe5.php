@@ -30,12 +30,22 @@
                     <!-- User Account Menu -->
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <!-- The user image in the navbar-->
+ <!--                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="<?php echo e(Gravatar::get($user->email)); ?>" class="user-image" alt="User Image"/>
-                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs"><?php echo e(Auth::user()->name); ?></span>
+                             <span class="hidden-xs"><?php echo e(Auth::user()->name); ?></span>
+                        </a> -->
+                        <a href="<?php echo e(url('/logout')); ?>" class="btn btn-default btn-flat"
+                           onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                            <?php echo e(trans('adminlte_lang::message.signout')); ?>
+
                         </a>
+
+                        <form id="logout-form" action="<?php echo e(url('/logout')); ?>" method="POST" style="display: none;">
+                            <?php echo e(csrf_field()); ?>
+
+                            <input type="submit" value="logout" style="display: none;">
+                        </form>                        
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">

@@ -35,7 +35,7 @@
 
             <?php endif; ?>
             >
-                <a href="<?php echo e(url('kasir')); ?>"><i class='fa fa-money'></i> <span>Kasir</span></a>
+                <a href="<?php echo e(url('transaksi/add-transaksi')); ?>"><i class='fa fa-money'></i> <span>Kasir</span></a>
             </li>
 
             <li

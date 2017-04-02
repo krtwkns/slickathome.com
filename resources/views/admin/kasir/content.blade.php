@@ -14,7 +14,7 @@
 			<div class="form-group">
 				<label for="kode_barang" class="col-sm-2 control-label">Kode Barang</label>
 				<div class="col-md-10">
-					<input disabled type="text" class="form-control input-lg" id="kode_barang" name="kode_barang" placeholder="Kode Barang" >
+					<input readonly type="text" class="form-control input-lg" id="kode_barang" name="kode_barang" placeholder="Kode Barang" >
 				</div>
 			</div>
 
@@ -39,7 +39,7 @@
 			<div class="form-group">
 				<label for="judul" class="col-sm-2 control-label">Quantity </label>
 				<div class="col-md-10">
-					<input type="text" class="form-control input-lg" id="sub_jumlah_barang" name="sub_jumlah_barang" placeholder="Contoh : 10000" required onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);";>
+					<input type="text" class="form-control input-lg" id="sub_jumlah_barang" name="sub_jumlah_barang" placeholder="Contoh : 10" required onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);";>
 				</div>
 			</div>				
 		
@@ -74,7 +74,7 @@
 	                    <div class="input-group-addon">
 	                        <b>Rp.</b>
 	                    </div>
-					<input disabled type="text" class="form-control input-lg" id="total" name="total" ;>
+					<input readonly type="text" class="form-control input-lg" id="total" name="total" value="{{ $totalHarga }}">
 					</div>
 				</div>
 			</div>
@@ -149,10 +149,11 @@
 			        <td width="10%" style="text-align:center">{{$d->kode_barang}}</td>
 			        <td width="30%">nama_barang</td>
 			        <td width="10%" style="text-align:right">harga_jual</td>
-			        <td width="10%" style="text-align:right">quantity here</td>
-			        <td width="10%" style="text-align:right">sub-total</td>
+			        <td width="10%" style="text-align:right">{{$d->sub_jumlah_barang}}</td>
+			        <td width="10%" style="text-align:right">{{$d->sub_jumlah_harga}}</td>
 			        <td style="text-align:center" >
-			          <i class="fa fa-trash-o btn btn-sml btn-danger"> Hapus</i>
+			          <a href="{{url('kasir/delete-item/'.$d->id)}}" class="btn btn-danger btn-xs">
+	            		<i class="fa fa-trash"></i> Hapus</a>
 			        </td>
 			    </tr>
 			    <?php $number++ ?>
