@@ -15,6 +15,7 @@
 <table id="myTable" class="table table-striped table-bordered" cellspacing="0">
   <thead>
     <tr>
+      <th>No.</th>
       <th style="text-align:center">Kode Barang</th>      
       <th style="text-align:center">Nama Barang</th>
       <th style="text-align:center">Satuan Stok</th>
@@ -22,9 +23,9 @@
       <th style="text-align:center">Action</th>
     </tr> </thead>
   <tbody>
-   
-   @forelse($stok_barang as $sb) 
+   @forelse($stok_barang as $i => $sb) 
     <tr>
+      <td>{{ $i+1 }}</td>
       <td width="28%" style="text-align:center">{{$sb->barang->kode_barang}}</td>
       <td width="28%" style="text-align:center">{{$sb->barang->nama_barang}}</td>
       <td width="28%" style="text-align:center">{{$sb->satuan_stok}}</td>      
@@ -44,7 +45,7 @@
      
      @empty
         <tr>
-          <td colspan="5"><center>Belum ada barang</center></td>
+          <td colspan="6"><center>Belum ada barang</center></td>
         </tr>
     @endforelse
   </tbody>

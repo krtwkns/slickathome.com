@@ -1,5 +1,4 @@
 	<div class="col-md-8">
-		<?php $__currentLoopData = $transaction; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $transaction): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 		<a class="btn btn-danger btn-md" href="<?php echo e(('hapus/'.$transaction->id)); ?>">Batalkan Transaksi</a>
 		<form id="cariBarang" method="post" action="<?php echo e(url('kasir/add-item/'.$transaction->id)); ?>" enctype="multipart/form-data"  class="form-horizontal">
 			<br>
@@ -46,7 +45,12 @@
 			<div class="form-group">
 				<label for="judul" class="col-sm-2 control-label">Sub-Total(Rp)</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control input-lg" id="sub_jumlah_harga" name="sub_jumlah_harga" placeholder="Sub Total Harga (Rupiah)">
+					<div class="input-group">
+	                    <div class="input-group-addon">
+	                        <b>Rp.</b>
+	                    </div>
+					<input type="text" class="form-control input-lg" id="sub_jumlah_harga" name="sub_jumlah_harga"onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);"; disabled>
+				</div>
 				</div>
 			</div>				
 
@@ -64,8 +68,9 @@
 	<br>
 	<br>	
 	<div class="col-md-4">
-		<form id="formKasir" method="post" action="<?php echo e(url('article/create')); ?>" enctype="multipart/form-data"  class="form-horizontal">
+		<form id="formKasir" method="post" action="<?php echo e(url('kasir/submit-transaksi')); ?>" enctype="multipart/form-data"  class="form-horizontal">
 			<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+			<input type="hidden" name="transaksi_id" value="<?php echo e($transaction->id); ?>">
 			<br>
 			<div class="form-group">
 				<label for="ukuran" class="col-sm-2 control-label">Total </label>
@@ -98,7 +103,7 @@
 	                    <div class="input-group-addon">
 	                        <b>Rp.</b>
 	                    </div>
-					<input type="text" class="form-control input-lg" id="bayar" name="bayar" required>
+					<input type="text" class="form-control input-lg" id="diskon" name="diskon" required>
 					</div>
 				</div>
 			</div>			
@@ -118,7 +123,7 @@
 			<div class="pull-right">
 				<div class="col-md-10">
 					<button type="submit" class="btn btn-success btn-md">
-						<i class="fa fa-shopping-cart" aria-hidden="true"> SELESAI</i>
+						<i class="fa fa-shopping-cart" aria-hidden="true"> Selesai</i>
 					</button>
 				</div>
 			</div>
@@ -142,17 +147,17 @@
 			</thead>
 		  	<tbody>
 		  		<?php $number = 1 ?>
-		  		<?php if( ! empty($item)): ?>
-		  		<?php $__empty_1 = true; $__currentLoopData = $item; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+		  		<?php if( ! empty($details)): ?>
+		  		<?php $__empty_1 = true; $__currentLoopData = $details; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $detail): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
 			    <tr>
 			        <td width="5%" style="text-align:center"><?php echo e($number); ?></td>
-			        <td width="10%" style="text-align:center"><?php echo e($d->kode_barang); ?></td>
-			        <td width="30%">nama_barang</td>
-			        <td width="10%" style="text-align:right">harga_jual</td>
-			        <td width="10%" style="text-align:right"><?php echo e($d->sub_jumlah_barang); ?></td>
-			        <td width="10%" style="text-align:right"><?php echo e($d->sub_jumlah_harga); ?></td>
+			        <td width="10%" style="text-align:center"><?php echo e($detail->barang->kode_barang); ?></td>
+			        <td width="30%"><?php echo e($detail->barang->nama_barang); ?></td>
+			        <td width="10%" style="text-align:right"><?php echo e($detail->barang->harga_jual); ?></td>
+			        <td width="10%" style="text-align:right"><?php echo e($detail->sub_jumlah_barang); ?></td>
+			        <td width="10%" style="text-align:right"><?php echo e($detail->sub_jumlah_harga); ?></td>
 			        <td style="text-align:center" >
-			          <a href="<?php echo e(url('kasir/delete-item/'.$d->id)); ?>" class="btn btn-danger btn-xs">
+			          <a href="<?php echo e(url('kasir/delete-item/'.$detail->id)); ?>" class="btn btn-danger btn-xs">
 	            		<i class="fa fa-trash"></i> Hapus</a>
 			        </td>
 			    </tr>
@@ -167,6 +172,4 @@
 			    <?php endif; ?>
 		  </tbody>
 		</table>
-		<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 	</div>
-	

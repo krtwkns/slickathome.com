@@ -19,6 +19,5 @@ class Barang extends Model
 		'harga_modal',
 		'harga_jual',
    	];
-    protected $guarded = [];	   	
     protected $dates = ['deleted_at'];   	
 }

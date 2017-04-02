@@ -1,5 +1,4 @@
 	<div class="col-md-8">
-		@foreach($transaction as $transaction)
 		<a class="btn btn-danger btn-md" href="{{ ('hapus/'.$transaction->id) }}">Batalkan Transaksi</a>
 		<form id="cariBarang" method="post" action="{{url('kasir/add-item/'.$transaction->id)}}" enctype="multipart/form-data"  class="form-horizontal">
 			<br>
@@ -14,7 +13,7 @@
 			<div class="form-group">
 				<label for="kode_barang" class="col-sm-2 control-label">Kode Barang</label>
 				<div class="col-md-10">
-					<input disabled type="text" class="form-control input-lg" id="kode_barang" name="kode_barang" placeholder="Kode Barang" >
+					<input readonly type="text" class="form-control input-lg" id="kode_barang" name="kode_barang" placeholder="Kode Barang" >
 				</div>
 			</div>
 
@@ -39,14 +38,19 @@
 			<div class="form-group">
 				<label for="judul" class="col-sm-2 control-label">Quantity </label>
 				<div class="col-md-10">
-					<input type="text" class="form-control input-lg" id="sub_jumlah_barang" name="sub_jumlah_barang" placeholder="Contoh : 10000" required onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);";>
+					<input type="text" class="form-control input-lg" id="sub_jumlah_barang" name="sub_jumlah_barang" placeholder="Contoh : 10" required onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);";>
 				</div>
 			</div>				
 		
 			<div class="form-group">
 				<label for="judul" class="col-sm-2 control-label">Sub-Total(Rp)</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control input-lg" id="sub_jumlah_harga" name="sub_jumlah_harga" placeholder="Sub Total Harga (Rupiah)">
+					<div class="input-group">
+	                    <div class="input-group-addon">
+	                        <b>Rp.</b>
+	                    </div>
+					<input type="text" class="form-control input-lg" id="sub_jumlah_harga" name="sub_jumlah_harga"onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);"; disabled>
+				</div>
 				</div>
 			</div>				
 
@@ -64,8 +68,9 @@
 	<br>
 	<br>	
 	<div class="col-md-4">
-		<form id="formKasir" method="post" action="{{url('article/create')}}" enctype="multipart/form-data"  class="form-horizontal">
+		<form id="formKasir" method="post" action="{{url('kasir/submit-transaksi')}}" enctype="multipart/form-data"  class="form-horizontal">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+			<input type="hidden" name="transaksi_id" value="{{ $transaction->id }}">
 			<br>
 			<div class="form-group">
 				<label for="ukuran" class="col-sm-2 control-label">Total </label>
@@ -74,7 +79,7 @@
 	                    <div class="input-group-addon">
 	                        <b>Rp.</b>
 	                    </div>
-					<input disabled type="text" class="form-control input-lg" id="total" name="total" ;>
+					<input readonly type="text" class="form-control input-lg" id="total" name="total" value="{{ $totalHarga }}">
 					</div>
 				</div>
 			</div>
@@ -86,7 +91,7 @@
 	                    <div class="input-group-addon">
 	                        <b>Rp.</b>
 	                    </div>
-					<input type="text" class="form-control input-lg" id="bayar" name="bayar" required>
+					<input type="text" class="form-control input-lg" id="bayar" name="bayar" required onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);";>
 					</div>
 				</div>
 			</div>
@@ -98,7 +103,7 @@
 	                    <div class="input-group-addon">
 	                        <b>Rp.</b>
 	                    </div>
-					<input type="text" class="form-control input-lg" id="bayar" name="bayar" required>
+					<input type="text" class="form-control input-lg" id="diskon" name="diskon" required onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);";>
 					</div>
 				</div>
 			</div>			
@@ -110,7 +115,7 @@
 	                    <div class="input-group-addon">
 	                        <b>Rp.</b>
 	                    </div>
-					<input disabled type="text" class="form-control input-lg" id="kembali" name="kembali" ;>
+					<input disabled type="text" class="form-control input-lg" id="kembali" name="kembali" onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);";>
 					</div>
 				</div>
 			</div>
@@ -118,7 +123,7 @@
 			<div class="pull-right">
 				<div class="col-md-10">
 					<button type="submit" class="btn btn-success btn-md">
-						<i class="fa fa-shopping-cart" aria-hidden="true"> SELESAI</i>
+						<i class="fa fa-shopping-cart" aria-hidden="true"> Selesai</i>
 					</button>
 				</div>
 			</div>
@@ -142,17 +147,18 @@
 			</thead>
 		  	<tbody>
 		  		<?php $number = 1 ?>
-		  		@if( ! empty($item))
-		  		@forelse($item as $d)
+		  		@if( ! empty($details))
+		  		@forelse($details as $detail)
 			    <tr>
 			        <td width="5%" style="text-align:center">{{$number}}</td>
-			        <td width="10%" style="text-align:center">{{$d->kode_barang}}</td>
-			        <td width="30%">nama_barang</td>
-			        <td width="10%" style="text-align:right">harga_jual</td>
-			        <td width="10%" style="text-align:right">quantity here</td>
-			        <td width="10%" style="text-align:right">sub-total</td>
+			        <td width="10%" style="text-align:center">{{$detail->barang->kode_barang}}</td>
+			        <td width="30%">{{$detail->barang->nama_barang}}</td>
+			        <td width="10%" style="text-align:right">{{$detail->barang->harga_jual}}</td>
+			        <td width="10%" style="text-align:right">{{$detail->sub_jumlah_barang}}</td>
+			        <td width="10%" style="text-align:right">{{$detail->sub_jumlah_harga}}</td>
 			        <td style="text-align:center" >
-			          <i class="fa fa-trash-o btn btn-sml btn-danger"> Hapus</i>
+			          <a href="{{url('kasir/delete-item/'.$detail->id)}}" class="btn btn-danger btn-xs">
+	            		<i class="fa fa-trash"></i> Hapus</a>
 			        </td>
 			    </tr>
 			    <?php $number++ ?>
@@ -166,6 +172,4 @@
 			    @endif
 		  </tbody>
 		</table>
-		@endforeach
 	</div>
-	

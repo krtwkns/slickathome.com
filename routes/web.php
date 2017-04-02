@@ -25,6 +25,8 @@ Route::group(['middleware' => 'auth'], function () {
 	    Route::group(['prefix'=>'kasir'], function(){
             Route::get('/{id}',['as'=>'adminltein.kasir.index', 'uses'=>'Admin\KasirController@index']);
             Route::post('/add-item/{id}',['as'=>'admin.kasir.add-item', 'uses'=>'Admin\KasirController@addItem']);
+            Route::post('/submit-transaksi','Admin\KasirController@submitTransaksi');
+            Route::get('delete-item/{id}', ['as'=>'admin.kasir.delete-item', 'uses'=>'Admin\KasirController@deleteItem']);
             Route::get('hapus/{id}', ['as'=>'admin.kasir.index', 'uses'=>'Admin\TransaksiController@delete']);
         });
             Route::get('/autocomplete',['as'=>'autocomplete', 'uses'=>'Admin\KasirController@autocomplete']);
@@ -33,6 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix'=>'transaksi'], function(){
                 Route::get('/', ['as'=>'admin.transaksi.index', 'uses'=>'Admin\TransaksiController@index']);
                 Route::get('/add-transaksi',['as'=>'admin.transaksi.add-transaksi', 'uses'=>'Admin\TransaksiController@addTransaksi']);
+                Route::get('/{id}/view-transaksi',['as'=>'admin.transaksi.view-transaksi', 'uses'=>'Admin\TransaksiController@viewTransaksi']);
         }); 
 //User History
         Route::group(['prefix'=>'user-history'], function(){

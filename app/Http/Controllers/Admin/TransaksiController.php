@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Transaksi;
+use App\DetailTransaksi;
 use Intervention\Image\ImageManagerStatic as Image;
 use Session;
 use Input;
@@ -33,7 +34,7 @@ class TransaksiController extends Controller
     public function addTransaksi(Request $request)
     {        
     	$transaksi = Transaksi::create([
-    			'created_by' =>  Auth::User()->id,
+    			'created_by' =>  Auth::User()->name,
                 'diskon' => 0,
                 'total_harga' => 0,
                 'laba' => 0,
@@ -46,6 +47,19 @@ class TransaksiController extends Controller
     {
         $result = Transaksi::find($id)->delete();
         return Redirect::to('/');
+    }
+
+    public function viewTransaksi($id)
+    {
+        $transaksi = Transaksi::where('id', $id)->first();
+        $item = DetailTransaksi::where('transaksi_id', $id)->get();
+        
+        $data = [
+            'page' => 'view-transaksi',
+            'item' => $item,
+            'transaksi' => $transaksi,
+        ];
+        return view('admin.transaksi.view', $data);
     }
 
     

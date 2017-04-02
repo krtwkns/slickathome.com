@@ -54,6 +54,8 @@ class BarangController extends Controller
     {
         $barang = Barang::find($id);
         $barang->delete();
+        $stokBarng = StokBarang::where('barang_id', $id)->first();
+        $stokBarng->delete();
     	Session::put('alert-success', 'Barang '.$barang->nama_barang.' berhasil dihapus');
       	return Redirect::back();	  
     }
