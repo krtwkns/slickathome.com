@@ -1,8 +1,8 @@
 	<div class="col-md-8">
-		<a class="btn btn-danger btn-md" href="{{ ('hapus/'.$transaction->id) }}">Batalkan Transaksi</a>
-		<form id="cariBarang" method="post" action="{{url('kasir/add-item/'.$transaction->id)}}" enctype="multipart/form-data"  class="form-horizontal">
+		<a class="btn btn-danger btn-md" href="<?php echo e(('hapus/'.$transaction->id)); ?>">Batalkan Transaksi</a>
+		<form id="cariBarang" method="post" action="<?php echo e(url('kasir/add-item/'.$transaction->id)); ?>" enctype="multipart/form-data"  class="form-horizontal">
 			<br>
-			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+			<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 			<label for="autocomplete" class="control-label">Nama Barang atau Kode Barang</label>
 			<div class="form-group">
 			<div class="col-md-12" style="margin-bottom: 10px;">
@@ -63,9 +63,9 @@
 	<br>
 	<br>	
 	<div class="col-md-4">
-		<form id="formKasir" method="post" action="{{url('kasir/submit-transaksi')}}" enctype="multipart/form-data"  class="form-horizontal">
-			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-			<input type="hidden" name="transaksi_id" value="{{ $transaction->id }}">
+		<form id="formKasir" method="post" action="<?php echo e(url('kasir/submit-transaksi')); ?>" enctype="multipart/form-data"  class="form-horizontal">
+			<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+			<input type="hidden" name="transaksi_id" value="<?php echo e($transaction->id); ?>">
 			<br>
 			<div class="form-group">
 				<label for="ukuran" class="col-sm-2 control-label">Total </label>
@@ -74,7 +74,7 @@
 	                    <div class="input-group-addon">
 	                        <b>Rp.</b>
 	                    </div>
-					<input readonly type="text" class="form-control input-lg" id="total" name="total" value="{{ $totalHarga }}">
+					<input readonly type="text" class="form-control input-lg" id="total" name="total" value="<?php echo e($totalHarga); ?>">
 					</div>
 				</div>
 			</div>
@@ -142,29 +142,29 @@
 			</thead>
 		  	<tbody>
 		  		<?php $number = 1 ?>
-		  		@if( ! empty($details))
-		  		@forelse($details as $detail)
+		  		<?php if( ! empty($details)): ?>
+		  		<?php $__empty_1 = true; $__currentLoopData = $details; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $detail): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
 			    <tr>
-			        <td width="5%" style="text-align:center">{{$number}}</td>
-			        <td width="10%" style="text-align:center">{{$detail->barang->kode_barang}}</td>
-			        <td width="30%">{{$detail->barang->nama_barang}}</td>
-			        <td width="10%" style="text-align:right">{{$detail->barang->harga_jual}}</td>
-			        <td width="10%" style="text-align:right">{{$detail->sub_jumlah_barang}}</td>
-			        <td width="10%" style="text-align:right">{{$detail->sub_jumlah_harga}}</td>
+			        <td width="5%" style="text-align:center"><?php echo e($number); ?></td>
+			        <td width="10%" style="text-align:center"><?php echo e($detail->barang->kode_barang); ?></td>
+			        <td width="30%"><?php echo e($detail->barang->nama_barang); ?></td>
+			        <td width="10%" style="text-align:right"><?php echo e($detail->barang->harga_jual); ?></td>
+			        <td width="10%" style="text-align:right"><?php echo e($detail->sub_jumlah_barang); ?></td>
+			        <td width="10%" style="text-align:right"><?php echo e($detail->sub_jumlah_harga); ?></td>
 			        <td style="text-align:center" >
-			          <a href="{{url('kasir/delete-item/'.$detail->id)}}" class="btn btn-danger btn-xs">
+			          <a href="<?php echo e(url('kasir/delete-item/'.$detail->id)); ?>" class="btn btn-danger btn-xs">
 	            		<i class="fa fa-trash"></i> Hapus</a>
 			        </td>
 			    </tr>
 			    <?php $number++ ?>
-			     @empty
+			     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
 			        <tr>
 			          <td colspan="7"><center>Belum ada barang</center></td>
 			        </tr>
-			    @endforelse
-		  		@else
+			    <?php endif; ?>
+		  		<?php else: ?>
 		  		
-			    @endif
+			    <?php endif; ?>
 		  </tbody>
 		</table>
 	</div>

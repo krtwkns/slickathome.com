@@ -33,7 +33,7 @@ class TransaksiController extends Controller
     public function addTransaksi(Request $request)
     {        
     	$transaksi = Transaksi::create([
-    			'created_by' =>  Auth::User()->id,
+    			'created_by' =>  Auth::User()->name,
                 'diskon' => 0,
                 'total_harga' => 0,
                 'laba' => 0,
