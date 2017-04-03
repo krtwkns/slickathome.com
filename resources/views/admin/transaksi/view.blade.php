@@ -52,21 +52,36 @@ View Detail Transaksi
 			<div class="form-group">
 					<label for="nama_barang" class="col-sm-2 control-label">Total Harga</label>
 					<div class="col-md-8">
-						<input disabled type="text" class="form-control input-lg" id="nama_barang" value="{{ $transaksi->total_harga }}" name="nama_barang"  >
+					<div class="input-group">
+	                    <div class="input-group-addon">
+	                        <b>Rp.</b>
+	                    </div>
+						<input disabled type="text" class="form-control input-lg" id="nama_barang" value="{{number_format($transaksi->total_harga, 0, ',', '.')}}" name="nama_barang"  >
+						</div>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label for="diskon" class="col-sm-2 control-label">Diskon</label>
 					<div class="col-md-8">
-						<input disabled type="text" class="form-control input-lg" id="diskon" value="{{ $transaksi->diskon }}" name="diskon" >
+					<div class="input-group">
+	                    <div class="input-group-addon">
+	                        <b>Rp.</b>
+	                    </div>
+						<input disabled type="text" class="form-control input-lg" id="diskon" value="{{number_format($transaksi->diskon, 0, ',', '.')}}" name="diskon" >
+					</div>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label for="nama_barang" class="col-sm-2 control-label">Laba</label>
 					<div class="col-md-8">
-						<input disabled type="text" class="form-control input-lg" id="laba" value="{{ $transaksi->laba }}" name="laba"  >
+					<div class="input-group">
+	                    <div class="input-group-addon">
+	                        <b>Rp.</b>
+	                    </div>
+						<input disabled type="text" class="form-control input-lg" id="laba" value="{{number_format($transaksi->laba, 0, ',', '.')}}" name="laba"  >
+					</div>
 					</div>
 				</div>				
 

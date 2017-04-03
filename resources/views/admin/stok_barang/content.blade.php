@@ -18,7 +18,6 @@
       <th>No.</th>
       <th style="text-align:center">Kode Barang</th>      
       <th style="text-align:center">Nama Barang</th>
-      <th style="text-align:center">Satuan Stok</th>
       <th style="text-align:center">Jumlah Stok</th>
       <th style="text-align:center">Action</th>
     </tr> </thead>
@@ -27,9 +26,8 @@
     <tr>
       <td>{{ $i+1 }}</td>
       <td width="28%" style="text-align:center">{{$sb->barang->kode_barang}}</td>
-      <td width="28%" style="text-align:center">{{$sb->barang->nama_barang}}</td>
-      <td width="28%" style="text-align:center">{{$sb->satuan_stok}}</td>      
-      <td width="28%" style="text-align:center">{{$sb->jumlah_stok}}</td>
+      <td width="28%" style="text-align:center">{{$sb->barang->nama_barang}}</td>      
+      <td width="28%" style="text-align:center">{{$sb->jumlah_stok}} {{$sb->satuan_stok}}</td>
       <td style="text-align:center" >
         <div class="col-md-12">
           <a style="width: 70px ; margin-bottom: 5px;" onclick="return confirm('Anda yakin untuk menghapus barang ini?');" href="{{url('stok_barang/'.$sb->id.'/hapus/')}}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus

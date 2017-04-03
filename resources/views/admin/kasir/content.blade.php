@@ -2,6 +2,15 @@
 		<a class="btn btn-danger btn-md" href="{{ ('hapus/'.$transaction->id) }}">Batalkan Transaksi</a>
 		<form id="cariBarang" method="post" action="{{url('kasir/add-item/'.$transaction->id)}}" enctype="multipart/form-data"  class="form-horizontal">
 			<br>
+			@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<label for="autocomplete" class="control-label">Nama Barang atau Kode Barang</label>
 			<div class="form-group">
@@ -38,7 +47,7 @@
 			<div class="form-group">
 				<label for="judul" class="col-sm-2 control-label">Quantity </label>
 				<div class="col-md-10">
-					<input type="text" class="form-control input-lg" id="sub_jumlah_barang" name="sub_jumlah_barang" placeholder="Contoh : 10" required onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);";>
+					<input type="text" class="form-control input-lg" id="sub_jumlah_barang" name="sub_jumlah_barang" placeholder="Contoh : 10" onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);";>
 				</div>
 			</div>				
 		
@@ -49,7 +58,7 @@
 	                    <div class="input-group-addon">
 	                        <b>Rp.</b>
 	                    </div>
-					<input type="text" class="form-control input-lg" id="sub_jumlah_harga" name="sub_jumlah_harga"onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);"; disabled>
+					<input type="text" class="form-control input-lg" id="sub_jumlah_harga" name="sub_jumlah_harga"onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);"; readonly>
 				</div>
 				</div>
 			</div>				
@@ -103,7 +112,7 @@
 	                    <div class="input-group-addon">
 	                        <b>Rp.</b>
 	                    </div>
-					<input type="text" class="form-control input-lg" id="diskon" name="diskon" required onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);";>
+					<input type="text" class="form-control input-lg" id="diskon" name="diskon" onkeypress="var key = event.keyCode || event.charCode; return ((key  >= 48 && key  <= 57) || key == 8);";>
 					</div>
 				</div>
 			</div>			
@@ -153,10 +162,11 @@
 			        <td width="5%" style="text-align:center">{{$number}}</td>
 			        <td width="10%" style="text-align:center">{{$detail->barang->kode_barang}}</td>
 			        <td width="30%">{{$detail->barang->nama_barang}}</td>
-			        <td width="10%" style="text-align:right">{{$detail->barang->harga_jual}}</td>
+			        <td width="20%" style="text-align:right">
+			        Rp. {{number_format($detail->barang->harga_jual, 0, ',', '.')}}</td>
 			        <td width="10%" style="text-align:right">{{$detail->sub_jumlah_barang}}</td>
-			        <td width="10%" style="text-align:right">{{$detail->sub_jumlah_harga}}</td>
-			        <td style="text-align:center" >
+			        <td width="20%" style="text-align:right">Rp. {{number_format($detail->sub_jumlah_harga, 0, ',', '.')}}</td>
+			        <td width="10%" style="text-align:center" >
 			          <a href="{{url('kasir/delete-item/'.$detail->id)}}" class="btn btn-danger btn-xs">
 	            		<i class="fa fa-trash"></i> Hapus</a>
 			        </td>

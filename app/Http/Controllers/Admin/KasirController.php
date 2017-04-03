@@ -61,6 +61,9 @@ class KasirController extends Controller
 
     public function addItem($id, Request $request)
     {
+        $this->validate($request,[
+            'sub_jumlah_barang' => 'required|integer|min:1'
+            ]);
         $in = $request->input();
         $in['transaksi_id'] = $id;
         $barang = Barang::where('kode_barang',$in['kode_barang'])->first();

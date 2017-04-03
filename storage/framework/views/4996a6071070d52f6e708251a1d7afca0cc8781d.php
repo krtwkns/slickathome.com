@@ -61,15 +61,16 @@ Tambah Barang
 					</div>
 				</div>
 
+
 				<div class="form-group">
 	              <label for="group" class="col-sm-2 form-control-label "> Kategori</label>
-	              <div class="col-md-10">
-	               <select name="kategori" required>
-	               	<option value="">-- Pilih Kategori Pomade --</option>
-	                <option value="Light">Light</option>
-	                <option value="Medium">Medium</option>
-	                <option value="Strong">Strong</option>
-	                <option value="Heavy">Heavy</option>
+	              <div class="col-md-8">
+	               <select class="form-control" name="kategori" required>
+		            	<option value="">-- Pilih Kategori Pomade --</option>
+		                <option value="Light">Light</option>
+		                <option value="Medium">Medium</option>
+		                <option value="Strong">Strong</option>
+		                <option value="Heavy">Heavy</option>
 	              </select>
 	              </div>
 	            </div>

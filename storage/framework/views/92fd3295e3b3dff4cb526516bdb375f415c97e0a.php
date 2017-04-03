@@ -49,7 +49,7 @@
      <?php $number++ ?>
      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
         <tr>
-          <td colspan="5"><center>Belum ada barang</center></td>
+          <td colspan="8"><center>Belum ada barang</center></td>
         </tr>
     <?php endif; ?>
   </tbody>
