@@ -28,13 +28,13 @@
                 <a href="{{ url('home') }}"><i class='fa fa-home'></i> <span>Dashboard</span></a>
             </li>
             
-            <li
+<!--             <li
             @if($page == 'kasir')
             {!! 'class="active"'!!}
             @endif
             >
                 <a href="{{ url('transaksi/add-transaksi') }}"><i class='fa fa-money'></i> <span>Kasir</span></a>
-            </li>
+            </li> -->
 
             <li
             @if($page == 'barang')

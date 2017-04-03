@@ -17,7 +17,6 @@ use Validator;
 use Response;
 use Auth;
 
-
 class TransaksiController extends Controller
 {
 
@@ -26,7 +25,7 @@ class TransaksiController extends Controller
         
         $data = [
             'page' => 'transaksi',
-            'transaksi' => Transaksi::all()
+            'transaksi' => Transaksi::orderBy('created_at', 'DESC')->get()
         ];
         return view('admin.transaksi.index',$data);
     }

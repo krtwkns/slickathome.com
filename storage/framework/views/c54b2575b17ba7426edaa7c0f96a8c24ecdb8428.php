@@ -19,7 +19,6 @@
       <th>No.</th>
       <th style="text-align:center">Kode Barang</th>      
       <th style="text-align:center">Nama Barang</th>
-      <th style="text-align:center">Satuan Stok</th>
       <th style="text-align:center">Jumlah Stok</th>
       <th style="text-align:center">Action</th>
     </tr> </thead>
@@ -28,9 +27,8 @@
     <tr>
       <td><?php echo e($i+1); ?></td>
       <td width="28%" style="text-align:center"><?php echo e($sb->barang->kode_barang); ?></td>
-      <td width="28%" style="text-align:center"><?php echo e($sb->barang->nama_barang); ?></td>
-      <td width="28%" style="text-align:center"><?php echo e($sb->satuan_stok); ?></td>      
-      <td width="28%" style="text-align:center"><?php echo e($sb->jumlah_stok); ?></td>
+      <td width="28%" style="text-align:center"><?php echo e($sb->barang->nama_barang); ?></td>      
+      <td width="28%" style="text-align:center"><?php echo e($sb->jumlah_stok); ?> <?php echo e($sb->satuan_stok); ?></td>
       <td style="text-align:center" >
         <div class="col-md-12">
           <a style="width: 70px ; margin-bottom: 5px;" onclick="return confirm('Anda yakin untuk menghapus barang ini?');" href="<?php echo e(url('stok_barang/'.$sb->id.'/hapus/')); ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus

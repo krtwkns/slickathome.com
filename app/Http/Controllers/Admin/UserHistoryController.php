@@ -16,6 +16,7 @@ use Validator;
 use Response;
 use Carbon\Carbon;
 
+
 class UserHistoryController extends Controller
 {
 

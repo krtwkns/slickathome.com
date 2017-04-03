@@ -3,14 +3,14 @@
 		<form id="cariBarang" method="post" action="{{url('kasir/add-item/'.$transaction->id)}}" enctype="multipart/form-data"  class="form-horizontal">
 			<br>
 			@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+			    <div class="alert alert-danger">
+			        <ul>
+			            @foreach ($errors->all() as $error)
+			                <li>{{ $error }}</li>
+			            @endforeach
+			        </ul>
+			    </div>
+			@endif
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<label for="autocomplete" class="control-label">Nama Barang atau Kode Barang</label>
 			<div class="form-group">

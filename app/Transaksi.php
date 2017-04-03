@@ -13,5 +13,6 @@ class transaksi extends Model
 		'diskon', 
 		'total_harga',
 		'created_by',
+		'created_at',
    ];
 }
