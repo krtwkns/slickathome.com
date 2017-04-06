@@ -1,9 +1,9 @@
 <?php $__env->startSection('htmlheader_title'); ?>
-Edit Stok
+Edit Barang
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('contentheader_title'); ?>
-Edit Stok
+Edit Barang
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('code-header'); ?>
@@ -45,41 +45,30 @@ Edit Stok
 			</div>
 			<?php endif; ?>
 			<br>
-			<form id="editBarang" method="post" action="<?php echo e(url('stok_barang/'.$stok_barang->barang_id.'/edit')); ?>" enctype="multipart/form-data"  class="form-horizontal">
-				
+			<form id="editBarang" method="post" action="<?php echo e(url('merk/'.$merk->id.'/edit')); ?>" enctype="multipart/form-data"  class="form-horizontal">
 				<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
-				<input type="hidden" name="id" value="<?php echo e($stok_barang->id); ?>">	
-				<input type="hidden" name="barang_id" value="<?php echo e($stok_barang->barang_id); ?>">	
-
+				<input type="hidden" name="id" value="<?php echo e($merk->id); ?>">
 				<div class="form-group">
-					<label for="barang_id" class="col-sm-2 control-label">Kode Barang</label>
+					<label for="kode_barang" class="col-sm-2 control-label">Nama</label>
 					<div class="col-md-8">
-						<input type="text" class="form-control input-lg" id="barang_id" value="<?php echo e($stok_barang->barang->kode_barang); ?>" name="kode_barang" placeholder="Masukkan Barang" required disabled>
+						<input type="text" class="form-control input-lg" id="kode_barang" value="<?php echo e($merk->nama); ?>" name="nama" placeholder="Masukkan Kode Barang" required>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="barang_id" class="col-sm-2 control-label">Nama Barang</label>
+					<label for="nama_barang" class="col-sm-2 control-label">Harga</label>
 					<div class="col-md-8">
-						<input type="text" class="form-control input-lg" id="barang_id" value="<?php echo e($stok_barang->barang->nama_barang); ?>" name="nama_barang" placeholder="Masukkan Barang" required disabled>
+						<input type="text" class="form-control input-lg" id="nama_barang" value="<?php echo e($merk->harga); ?>" name="harga" placeholder="Masukkan Nama Barang" required>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="satuan_stok" class="col-sm-2 control-label">Satuan Stok Barang</label>
+					<label for="ukuran" class="col-sm-2 control-label">deskripsi</label>
 					<div class="col-md-8">
-	                    <select class="form-control" id="kategori" name="satuan_stok" required>
-	                        <option value="<?php echo e($stok_barang->satuan_stok); ?>" selected ><?php echo e($stok_barang->satuan_stok); ?></option>
-	                    </select>
+						<input type="text" class="form-control input-lg" id="ukuran" name="deskripsi" value="<?php echo e($merk->deskripsi); ?>" placeholder="Masukkan Ukuran" required>
 					</div>
 				</div>
 
-				<div class="form-group">
-					<label for="jumlah_stok" class="col-sm-2 control-label">Jumlah Stok</label>
-					<div class="col-md-8">
-						<input type="text" class="form-control input-lg" id="jumlah_stok" name="jumlah_stok" value="<?php echo e($stok_barang->jumlah_stok); ?>" placeholder="Masukkan Jumlah Stok" required>
-					</div>
-				</div>
 
 				<div class="form-group text-center">
 					<div class="col-md-8 col-md-offset-2">

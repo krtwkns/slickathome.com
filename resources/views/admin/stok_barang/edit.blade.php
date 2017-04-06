@@ -70,8 +70,7 @@ Edit Stok
 					<label for="satuan_stok" class="col-sm-2 control-label">Satuan Stok Barang</label>
 					<div class="col-md-8">
 	                    <select class="form-control" id="kategori" name="satuan_stok" required>
-	                        <option value="{{!!$stok_barang->satuan_stok!!}}" selected >{{$stok_barang->satuan_stok}}</option>
-	                        <option value="pcs" selected>pcs</option>
+	                        <option value="{{$stok_barang->satuan_stok}}" selected >{{$stok_barang->satuan_stok}}</option>
 	                    </select>
 					</div>
 				</div>
@@ -85,7 +84,7 @@ Edit Stok
 
 				<div class="form-group text-center">
 					<div class="col-md-8 col-md-offset-2">
-					<button type="submit" class="btn btn-primary btn-lg">
+						<button type="submit" class="btn btn-primary btn-lg">
 							Confirm
 						</button>
 					</div>

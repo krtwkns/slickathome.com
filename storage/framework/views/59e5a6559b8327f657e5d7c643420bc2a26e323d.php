@@ -64,8 +64,8 @@ Edit Barang
 
 				<div class="form-group">
 	              <label for="group" class="col-sm-2 form-control-label "> Kategori</label>
-	              <div class="col-md-10">
-	               <select name="kategori" required>
+	              <div class="col-md-8">
+	               <select name="kategori" class="form-control" required>
 	                <option <?php echo ($barang->kategori == 'Light')? 'selected' : ''; ?> value="Light">Light</option>
 	                <option <?php echo ($barang->kategori == 'Medium')? 'selected' : ''; ?> value="Medium">Medium</option>
 	                <option <?php echo ($barang->kategori == 'Strong')? 'selected' : ''; ?> value="Strong">Strong</option>

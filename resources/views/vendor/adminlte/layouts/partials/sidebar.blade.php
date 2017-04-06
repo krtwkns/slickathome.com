@@ -66,7 +66,7 @@
             @endif
             >
                 <a href="{{ url ('user-history')}}"><i class="fa fa-users" aria-hidden="true"></i>User History</a>
-            </li>            
+            </li>   
         </ul><!-- /.sidebar-menu
     </section>
     <!-- /.sidebar -->
