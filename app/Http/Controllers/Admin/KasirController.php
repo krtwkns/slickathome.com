@@ -68,7 +68,12 @@ class KasirController extends Controller
         $in['transaksi_id'] = $id;
         $barang = Barang::where('kode_barang',$in['kode_barang'])->first();
         $in['barang_id'] = $barang->id;
-        StokBarang::where('barang_id',$barang->id)->decrement('jumlah_stok',$in['sub_jumlah_barang']);
+        $stok = StokBarang::where('barang_id',$barang->id)->first();
+        if ($in['sub_jumlah_barang'] > $stok->jumlah_stok) {
+            Session::put('alert-danger', 'Stok barang tidak cukup!');
+        return Redirect::back();
+        }
+        $stok->decrement('jumlah_stok',$in['sub_jumlah_barang']);
         $result = DetailTransaksi::create($in);
         $result->save();
         return Redirect::to('kasir/'.$id);       

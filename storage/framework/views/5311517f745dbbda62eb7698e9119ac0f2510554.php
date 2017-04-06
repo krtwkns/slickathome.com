@@ -3,14 +3,26 @@
 		<form id="cariBarang" method="post" action="<?php echo e(url('kasir/add-item/'.$transaction->id)); ?>" enctype="multipart/form-data"  class="form-horizontal">
 			<br>
 			<?php if(count($errors) > 0): ?>
-    <div class="alert alert-danger">
-        <ul>
-            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <li><?php echo e($error); ?></li>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </ul>
-    </div>
-<?php endif; ?>
+			    <div class="alert alert-danger">
+			        <ul>
+			            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+			                <li><?php echo e($error); ?></li>
+			            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+			        </ul>
+			    </div>
+			<?php endif; ?>
+			<div class="flash-message" style="margin-left: -16px;margin-right: -16px; margin-top: 13px;">
+  <?php $__currentLoopData = ['danger', 'warning', 'success', 'info']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $msg): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+  <?php if(Session::has('alert-' . $msg)): ?>
+<div class="alert alert-<?php echo e($msg); ?>">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <p class="" style="border-radius: 0"><?php echo e(Session::get('alert-' . $msg)); ?></p>
+</div>
+  <?php echo Session::forget('alert-' . $msg); ?>
+
+  <?php endif; ?>
+  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+</div>
 			<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 			<label for="autocomplete" class="control-label">Nama Barang atau Kode Barang</label>
 			<div class="form-group">
