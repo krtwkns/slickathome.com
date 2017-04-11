@@ -90,6 +90,10 @@ class KasirController extends Controller
     public function submitTransaksi(Request $request)
     {
         $input = $request->input();
+        if ($input['bayar'] - ($input['total']-$input['diskon']) < 0) {
+         Session::put('alert-danger', 'Pembayaran anda kurang!');
+        return Redirect::back();   
+        }
         $transaksi = Transaksi::find($input['transaksi_id']);
         $details = DetailTransaksi::where('transaksi_id',$input['transaksi_id'])->get();
         $laba = 0;

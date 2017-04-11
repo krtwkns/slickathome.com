@@ -43,7 +43,7 @@ Kasir
     </script>
     <script type="text/javascript">
         $("#bayar,#total, #diskon, #kembali").keyup(function () {
-            $('#kembali').val($('#bayar').val() - $('#total').val() - $('#diskon').val());
+            $('#kembali').val($('#bayar').val() - ($('#total').val() - $('#diskon').val()) );
         });
     </script>    
     <script type="text/javascript">

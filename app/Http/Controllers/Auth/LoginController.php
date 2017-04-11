@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\UserHistory;
 use App\Users;
 
 class LoginController extends Controller
@@ -87,10 +86,11 @@ class LoginController extends Controller
      * @return bool
      */
     protected function attempLoginUsingUsernameAsAnEmail(Request $request)
-    {            
+    {  
         return $this->guard()->attempt(            
             ['email' => $request->input('username'), 'password' => $request->input('password')],
             $request->has('remember'));
+        
     }
 
 
