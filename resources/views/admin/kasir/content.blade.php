@@ -31,14 +31,14 @@
 			</div>
 
 			<div class="form-group">
-				<label for="kode_barang" class="col-sm-2 control-label">Kode Barang</label>
+				<label for="kode_barang" class="col-sm-2 control-label">Kode Barang </label>
 				<div class="col-md-10">
 					<input readonly type="text" class="form-control input-lg" id="kode_barang" name="kode_barang" placeholder="Kode Barang" >
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="judul" class="col-sm-2 control-label">Nama Barang</label>
+				<label for="judul" class="col-sm-2 control-label">Nama Barang </label>
 				<div class="col-md-10">
 					<input disabled type="text" class="form-control input-lg" id="nama_barang" name="nama_barang" placeholder="Nama Barang" >
 				</div>
